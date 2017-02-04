@@ -1,0 +1,70 @@
+<resources>
+    <string name="app_name">Inventory Mini</string>
+    <string name="title_activity_list_product">ListProductActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="yes">Ya</string>
+    <string name="no">Tidak</string>
+
+    <!-- Form Field -->
+    <string name="product_name">Nama</string>
+    <string name="product_image">Gambar</string>
+    <string name="product_category">Kategori</string>
+    <string name="create_category">Tambahkan</string>
+    <string name="add_new">Tambahkan</string>
+    <string name="add_new_image">Unggah Gambar</string>
+    <string name="select_image">Pilih Gambar</string>
+    <string name="product_category_id">Id Kategori</string>
+    <string name="select_cat">Pilih Kategori</string>
+    <string name="product_desc">Deskripsi</string>
+    <string name="product_qty">Jumlah</string>
+    <string name="product_created">Tanggal dibuat</string>
+    <string name="product_updated">Tanggal diubah</string>
+    <string name="product_price">Harga</string>
+    <string name="product_price_sale">Harga Diskon</string>
+    <string name="product_price_bulk">Harga Grosir</string>
+    <string name="min_price">Harga minimum</string>
+    <string name="max_price">Harga maksimum</string>
+    <string name="min_qty">Jumlah minimum</string>
+    <string name="max_qty">Jumlah maksimum</string>
+
+    <string name="sort_date_desc">Produk terbaru</string>
+    <string name="sort_date_asc">Produk terlama</string>
+    <string name="sort_price_desc">Harga termahal</string>
+    <string name="sort_price_asc">Harga termurah</string>
+    <string name="sort_name_desc">Nama terakhir</string>
+    <string name="sort_name_asc">Nama terawal</string>
+    <string name="sort_qty_desc">Jumlah terbanyak</string>
+    <string name="sort_qty_asc">Jumlah Terendah</string>
+
+    <!-- Form Message -->
+    <string name="msg_category_created">Kategori dibuat</string>
+    <string name="msg_category_error">Form kategori harus diisi</string>
+    <string name="msg_product_created">Produk berhasil dibuat</string>
+    <string name="msg_product_form_error">Form harus diisi</string>
+
+    <!-- Action -->
+    <string name="action_delete_all_product">Hapus semua produk</string>
+    <string name="question_delete_all_product">Anda yakin ingin menghapus seluruh Produk?</string>
+    <string name="action_search">Mencari </string>
+    <string name="action_filter">Filter Product</string>
+    <string name="action_sort">Sort Product</string>
+    <!-- Activity / Title -->
+    <string name="bar_title_create_cat">Tambah Kategori</string>
+    <string name="bar_title_create_product">Buat Produk</string>
+    <string name="bar_title_login">Login</string>
+    <string name="bar_title_register_store">Daftar Toko</string>
+    <string name="bar_title_register_user">Daftarkan User</string>
+    <string name="bar_title_latest_product">Produk Terbaru</string>
+
+    <!-- Store Settings -->
+    <string name="currency_symbol">Rp</string>
+    <string name="currency_grouping_sep">.</string>
+    <string name="currency_decimal_sep">,</string>
+
+    <!-- Intent String -->
+    <string name="productId">productId</string>
+</resources>

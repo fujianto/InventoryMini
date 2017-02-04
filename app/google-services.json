@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "188916619264",
+    "firebase_url": "https://inventorymini-d23f9.firebaseio.com",
+    "project_id": "inventorymini-d23f9",
+    "storage_bucket": "inventorymini-d23f9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:188916619264:android:c1921c8c84fcc20f",
+        "android_client_info": {
+          "package_name": "com.septianfujianto.inventorymini"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "188916619264-lt8h73bj8him8bo2i7bvmqq0bkjdi7nq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.septianfujianto.inventorymini",
+            "certificate_hash": "C04C8BE37A380B865C0C01DB0335A7EA35C95D10"
+          }
+        },
+        {
+          "client_id": "188916619264-20p8hlvdmh96dq6adohnnjnmm0i692q7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA65F3oY9nBPEC_gYcT-KlpCf-0cv7-PRE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "188916619264-20p8hlvdmh96dq6adohnnjnmm0i692q7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

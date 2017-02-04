@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/bottom_sheet_filter"
+    android:clipToPadding="true"
+    android:padding="10sp"
+    app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textAlignment="center"
+            android:layout_gravity="center"
+            android:textAllCaps="true"
+            android:text="Filter"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+        
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/filterWrap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Spinner
+                android:layout_marginTop="5sp"
+                android:layout_marginBottom="5sp"
+                android:id="@+id/filterProductCat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </Spinner>
+            
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginBottom="10sp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <android.support.design.widget.TextInputLayout
+                    android:layout_weight=".50"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:hint="@string/min_price"
+                        android:inputType="number"
+                        android:id="@+id/filterMinPrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_weight=".50"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:hint="@string/max_price"
+                        android:inputType="number"
+                        android:id="@+id/filterMaxPrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginBottom="10sp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <android.support.design.widget.TextInputLayout
+                    android:layout_weight=".50"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:hint="@string/min_qty"
+                        android:inputType="number"
+                        android:id="@+id/filterMinQty"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_weight=".50"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:hint="@string/max_qty"
+                        android:inputType="number"
+                        android:id="@+id/filterMaxQty"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+        </LinearLayout>
+        
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/btnReset"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:text="Reset"
+                android:layout_weight=".50"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/btnFilter"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:text="Selesai"
+                android:layout_weight=".50"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>
