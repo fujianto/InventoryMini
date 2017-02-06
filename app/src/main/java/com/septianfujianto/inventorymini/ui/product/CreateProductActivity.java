@@ -55,6 +55,10 @@ public class CreateProductActivity extends AppCompatActivity implements ProductP
     private Context context;
     private ProductPresenter productPresenter;
     private String imagePath;
+    private Bundle extras;
+    private int productId;
+    private ArrayAdapter<String> catAdapter;
+    private ArrayAdapter<String> locationAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,12 +69,19 @@ public class CreateProductActivity extends AppCompatActivity implements ProductP
         getSupportActionBar().setTitle(getString(R.string.bar_title_create_product));
         helper = new MiniRealmHelper(this);
         ImagePicker.setMinQuality(200, 200);
+        extras = getIntent().getExtras();
 
         productPresenter = new ProductPresenter(this, this);
 
         if (savedInstanceState == null) {
             setUpSpinner();
             setUpSpinnerLocation();
+        }
+
+        if (extras != null) {
+            productId = extras.getInt(getString(R.string.productId));
+
+            setupEditForm(productId);
         }
 
         btnAddImage.setOnClickListener(new View.OnClickListener() {
@@ -87,6 +98,41 @@ public class CreateProductActivity extends AppCompatActivity implements ProductP
                 resetFormField();
             }
         });
+    }
+
+    private void setupEditForm(int productId) {
+        try {
+            Product product = helper.getProductById(productId);
+            String catId = product.getCategory_id();
+            Category categoryResults = helper.getCategoryById(Integer.valueOf(catId));
+            String catName = categoryResults.getCategory_name();
+
+            int locationId = product.getLocation_id();
+            Location locationResults = helper.getLocationById(locationId);
+            String locationName = locationResults.getLocation_name();
+
+
+            if (!catName.equals(null)) {
+                spinnerCat.setSelection(catAdapter.getPosition(catName));
+            }
+
+            if (!locationName.equals(null)) {
+                spinnerLocation.setSelection(locationAdapter.getPosition(locationName));
+            }
+
+            if (product.getProduct_image() != null) {
+                imagePath = product.getProduct_image();
+                productImage.setImageURI(Uri.parse(imagePath));
+            }
+
+            productName.setText(product.getProduct_name());
+            productQty.setText(String.valueOf(product.getProduct_qty()));
+            productDesc.setText(product.getProduct_desc());
+            productPrice.setText(String.valueOf(product.getPrice()));
+            productPriceBulk.setText(String.valueOf(product.getBulk_price()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void resetFormField() {
@@ -108,14 +154,13 @@ public class CreateProductActivity extends AppCompatActivity implements ProductP
             Bitmap sBitmap = FileUtils.scaleDown(bitmap, 400, false);
             imagePath = FileUtils.getRealPathFromURI(context, FileUtils.getImageUri(context, sBitmap));
             productImage.setImageURI(Uri.parse(imagePath));
-            Log.e("``Image path", imagePath);
         }
     }
 
     private void setUpSpinner() {
         listCatId = new ArrayList<>();
         listCatLabel = new ArrayList<>();
-        final ArrayAdapter<String> catAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listCatLabel);
+        catAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listCatLabel);
         catAdapter.setDropDownViewResource(android.R.layout.select_dialog_item);
 
         RealmResults<Category> results = helper.getCategories();
@@ -140,7 +185,7 @@ public class CreateProductActivity extends AppCompatActivity implements ProductP
     private void setUpSpinnerLocation() {
         listLocationId = new ArrayList<>();
         listLocationLabel = new ArrayList<>();
-        final ArrayAdapter<String> locationAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listLocationLabel);
+        locationAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listLocationLabel);
         locationAdapter.setDropDownViewResource(android.R.layout.select_dialog_item);
 
         RealmResults<Location> results = helper.getLocations();
@@ -188,7 +233,7 @@ public class CreateProductActivity extends AppCompatActivity implements ProductP
         Product product = new Product();
 
         if (isValidProductFormField()) {
-            product.setProduct_id(helper.getNextKey(Product.class, "product_id"));
+            product.setProduct_id(extras != null ? productId : helper.getNextKey(Product.class, "product_id"));
             product.setProduct_image(imagePath);
             product.setProduct_name(productName.getText().toString());
             product.setProduct_qty(Integer.valueOf(productQty.getText().toString()));

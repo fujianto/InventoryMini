@@ -48,7 +48,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.backup.BackupActivity" />
+        <activity android:name=".ui.backup.BackupActivity" android:parentActivityName=".ui.product.ListProductActivity"/>
         <activity android:name=".ui.location.CreateLocationActivity"
             android:parentActivityName=".ui.product.ListProductActivity"></activity>
     </application>

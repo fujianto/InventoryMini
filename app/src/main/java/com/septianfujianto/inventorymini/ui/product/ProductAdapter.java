@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -67,8 +68,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductH
 
         holder.productTitle.setText(dbTitle);
         holder.productPrice.setText(price);
-        holder.productQty.setText(qty);
-        holder.productBulkPrice.setText(bulkPrice);
+        holder.productQty.setText(qty+" "+context.getString(R.string.product_qty_symbol));
 
         holder.productWrapper.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,17 +87,16 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductH
 
     public class ProductHolder extends RecyclerView.ViewHolder {
         private SquaredImageView featuredImage;
-        private TextView productTitle, productPrice, productBulkPrice, productQty;
-        private RelativeLayout productWrapper;
+        private TextView productTitle, productPrice, productQty;
+        private LinearLayout productWrapper;
 
         public ProductHolder(View itemView) {
             super(itemView);
 
-            productWrapper = (RelativeLayout) itemView.findViewById(R.id.productWrapper);
+            productWrapper = (LinearLayout) itemView.findViewById(R.id.productWrapper);
             featuredImage = (SquaredImageView) itemView.findViewById(R.id.featuredImage);
             productTitle = (TextView) itemView.findViewById(R.id.productTitle);
             productPrice = (TextView) itemView.findViewById(R.id.productPrice);
-            productBulkPrice = (TextView) itemView.findViewById(R.id.productPriceBulk);
             productQty = (TextView) itemView.findViewById(R.id.productQty);
         }
     }

@@ -12,6 +12,7 @@
     <!-- Form Field -->
     <string name="product_name">Nama</string>
     <string name="product_image">Gambar</string>
+    <string name="product_quantity">Jumlah</string>
     <string name="product_category">Kategori</string>
     <string name="product_location">Lokasi</string>
     <string name="create_category">Tambahkan</string>
@@ -76,6 +77,7 @@
     <string name="currency_symbol">Rp</string>
     <string name="currency_grouping_sep">.</string>
     <string name="currency_decimal_sep">,</string>
+    <string name="product_qty_symbol">buah</string>
 
     <!-- Intent String -->
     <string name="productId">productId</string>

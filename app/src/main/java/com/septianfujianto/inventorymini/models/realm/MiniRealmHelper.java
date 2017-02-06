@@ -5,6 +5,10 @@ import android.widget.Toast;
 
 import com.septianfujianto.inventorymini.models.ProductFilter;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import io.realm.Case;
 import io.realm.Realm;
 import io.realm.RealmModel;
@@ -79,6 +83,12 @@ public class MiniRealmHelper {
         realm.commitTransaction();
     }
 
+    public Category getCategoryById(int id) {
+        Category results = realm.where(Category.class).equalTo("category_id", id).findFirst();
+
+        return results;
+    }
+
     public RealmResults<Product> getProducts() {
         RealmResults<Product> results = realm.where(Product.class).findAllSorted("date_created", Sort.DESCENDING);
 
@@ -116,7 +126,6 @@ public class MiniRealmHelper {
 
     public RealmResults<Product> filterProducts(ProductFilter filter) {
         RealmQuery<Product> query = realm.where(Product.class);
-        //System.out.println("`` CATID "+filter.getCategory_id()+ " "+ filter.getMinPrice() + "``" +filter.getMaxPrice()+ "`` "+filter.getMinQty()+" "+filter.getMaxQty());
 
         if (filter.getCategory_id() != null) {
             query = query.equalTo("category_id", filter.getCategory_id());
@@ -155,5 +164,21 @@ public class MiniRealmHelper {
         realm.beginTransaction();
         dataResults.deleteFirstFromRealm();
         realm.commitTransaction();
+    }
+
+    public Location getLocationById(int id) {
+        Location results = realm.where(Location.class).equalTo("location_id", id).findFirst();
+
+        return results;
+    }
+
+    public void addItemstoRealmFromJson(String jsonResult, Class modelClass) {
+        try {
+            realm.beginTransaction();
+            realm.createOrUpdateAllFromJson(modelClass, jsonResult);
+            realm.commitTransaction();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
