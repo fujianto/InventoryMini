@@ -2,25 +2,20 @@ package com.septianfujianto.inventorymini.ui.product;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.septianfujianto.inventorymini.R;
 import com.septianfujianto.inventorymini.models.realm.Product;
-import com.septianfujianto.inventorymini.utils.ImageUtils;
 import com.septianfujianto.inventorymini.utils.SquaredImageView;
 import com.septianfujianto.inventorymini.utils.Utils;
 
 import java.util.List;
-
-import static com.septianfujianto.inventorymini.R.id.featuredImage;
-import static com.septianfujianto.inventorymini.R.id.productCat;
 
 /**
  * Created by Septian A. Fujianto on 2/2/2017.
@@ -66,8 +61,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductH
         final int productId = products.get(pos).getProduct_id();
 
         if (products.get(pos).getProduct_image() != null) {
-            byte[] dbImage = products.get(pos).getProduct_image();
-            holder.featuredImage.setImageBitmap(BitmapFactory.decodeByteArray(dbImage, 0, dbImage.length));
+            Uri uriImage = Uri.parse(products.get(pos).getProduct_image());
+            holder.featuredImage.setImageURI(uriImage);
         }
 
         holder.productTitle.setText(dbTitle);

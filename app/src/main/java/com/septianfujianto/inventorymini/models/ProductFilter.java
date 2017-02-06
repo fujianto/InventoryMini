@@ -8,15 +8,25 @@ public class ProductFilter {
     private String category_id;
     private Double minPrice, maxPrice;
     private int minQty, maxQty;
+    private int location_id;
 
     public ProductFilter() {}
 
-    public ProductFilter(String category_id, Double minPrice, Double maxPrice, int minQty, int maxQty) {
+    public ProductFilter(String category_id, int location_id, Double minPrice, Double maxPrice, int minQty, int maxQty) {
         this.category_id = category_id;
         this.minPrice = minPrice;
         this.maxPrice = maxPrice;
         this.minQty = minQty;
         this.maxQty = maxQty;
+        this.location_id = location_id;
+    }
+
+    public int getLocation_id() {
+        return location_id;
+    }
+
+    public void setLocation_id(int location_id) {
+        this.location_id = location_id;
     }
 
     public String getCategory_id() {

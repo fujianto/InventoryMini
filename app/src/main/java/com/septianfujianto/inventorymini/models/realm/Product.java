@@ -12,9 +12,10 @@ public class Product extends RealmObject {
     private int product_id;
     private String product_name;
     private String product_desc;
-    private byte[] product_image;
+    private String product_image;
     private int product_qty;
     private String category_id;
+    private int location_id;
     private Double price;
     private Double sale_price;
     private Double bulk_price;
@@ -25,8 +26,8 @@ public class Product extends RealmObject {
 
     }
 
-    public Product(int product_id, String product_name, String product_desc, byte[] product_image,
-                   int product_qty, String category_id, Double price, Double sale_price,
+    public Product(int product_id, String product_name, String product_desc, String product_image,
+                   int product_qty, String category_id, int location_id, Double price, Double sale_price,
                    Double bulk_price, String date_created, String date_modified) {
         this.product_id = product_id;
         this.product_name = product_name;
@@ -34,11 +35,20 @@ public class Product extends RealmObject {
         this.product_image = product_image;
         this.product_qty = product_qty;
         this.category_id = category_id;
+        this.location_id = location_id;
         this.price = price;
         this.sale_price = sale_price;
         this.bulk_price = bulk_price;
         this.date_created = date_created;
         this.date_modified = date_modified;
+    }
+
+    public int getLocation_id() {
+        return location_id;
+    }
+
+    public void setLocation_id(int location_id) {
+        this.location_id = location_id;
     }
 
     public int getProduct_id() {
@@ -65,11 +75,11 @@ public class Product extends RealmObject {
         this.product_desc = product_desc;
     }
 
-    public byte[] getProduct_image() {
+    public String getProduct_image() {
         return product_image;
     }
 
-    public void setProduct_image(byte[] product_image) {
+    public void setProduct_image(String product_image) {
         this.product_image = product_image;
     }
 

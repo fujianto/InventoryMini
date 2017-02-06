@@ -86,6 +86,7 @@ public class CreateCategoryActivity extends AppCompatActivity implements Categor
             loadCategories();
 
             Toast.makeText(this, getResources().getString(R.string.msg_category_created), Toast.LENGTH_SHORT).show();
+            catName.setText("");
         } else {
             Toast.makeText(this, getResources().getString(R.string.msg_category_error), Toast.LENGTH_SHORT).show();
         }

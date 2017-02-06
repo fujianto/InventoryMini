@@ -29,5 +29,17 @@ public class MiniMigration implements RealmMigration {
 
             oldVersion++;
         }
+
+        if (oldVersion == 1) {
+            schema.create("Location")
+                    .addPrimaryKey("location_id")
+                    .addField("location_id", int.class)
+                    .addField("location_name", String.class);
+
+            schema.get("Product")
+                    .addField("location_id", int.class);
+
+            oldVersion++;
+        }
     }
 }

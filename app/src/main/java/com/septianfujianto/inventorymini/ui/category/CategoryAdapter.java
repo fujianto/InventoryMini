@@ -15,6 +15,8 @@ import com.septianfujianto.inventorymini.models.realm.MiniRealmHelper;
 
 import java.util.List;
 
+import static com.septianfujianto.inventorymini.R.id.rowCatName;
+
 /**
  * Created by Septian A. Fujianto on 1/31/2017.
  */
@@ -50,7 +52,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         final int pos = holder.getAdapterPosition();
 
         if (!categories.isEmpty()) {
-            holder.rowCatId.setText(String.valueOf(categories.get(pos).getCategory_id()));
             holder.rowCatName.setText(categories.get(pos).getCategory_name());
         }
 
@@ -81,12 +82,11 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     }
 
     public class CategoryHolder extends RecyclerView.ViewHolder {
-        public TextView rowCatId, rowCatName;
+        public TextView rowCatName;
         public Button rowBtnEdit, rowBtnDelete;
 
         public CategoryHolder(View itemView) {
             super(itemView);
-            rowCatId = (TextView) itemView.findViewById(R.id.rowCatId);
             rowCatName = (TextView) itemView.findViewById(R.id.rowCatName);
             rowBtnEdit= (Button) itemView.findViewById(R.id.rowBtnEdit);
             rowBtnDelete= (Button) itemView.findViewById(R.id.rowBtnDelete);

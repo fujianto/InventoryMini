@@ -3,7 +3,6 @@ package com.septianfujianto.inventorymini.ui.splash;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
 import android.os.Handler;
 import com.septianfujianto.inventorymini.R;
 import com.septianfujianto.inventorymini.models.realm.MiniRealmHelper;
@@ -17,11 +16,8 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
         helper = new MiniRealmHelper(this);
-        System.out.println("``` "+helper.getCategories()+" `"+helper.getCategories().size());
-        // Default category
-        if (helper.getCategories() != null || helper.getCategories().size() > 0) {
-            helper.insertCategory(0, "Lainnya");
-        }
+
+       setDefaultRealmDB();
 
         final Intent intent = new Intent(this, ListProductActivity.class);
 
@@ -32,5 +28,17 @@ public class SplashScreenActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         }, 1000);
+    }
+
+    private void setDefaultRealmDB() {
+        // Default category
+        if (helper.getCategories() != null || helper.getCategories().size() > 0) {
+            helper.insertCategory(0, getString(R.string.other_category));
+        }
+
+        // Default Location
+        if (helper.getLocations() != null || helper.getLocations().size() > 0) {
+            helper.insertLocation(0, getString(R.string.other_location));
+        }
     }
 }

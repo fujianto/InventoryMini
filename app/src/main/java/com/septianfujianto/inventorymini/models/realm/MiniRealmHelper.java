@@ -91,6 +91,13 @@ public class MiniRealmHelper {
         return results;
     }
 
+    public void deleteProductById(int id) {
+        RealmResults<Product> dataResults = realm.where(Product.class).equalTo("product_id", id).findAll();
+        realm.beginTransaction();
+        dataResults.deleteFirstFromRealm();
+        realm.commitTransaction();
+    }
+
     public RealmResults<Product> searchProducts(String productName) {
         RealmResults<Product> results = realm.where(Product.class).contains("product_name", productName, Case.INSENSITIVE).findAll();
         results.sort("product_id", Sort.ASCENDING);
@@ -114,6 +121,10 @@ public class MiniRealmHelper {
         if (filter.getCategory_id() != null) {
             query = query.equalTo("category_id", filter.getCategory_id());
         }
+        System.out.println("` filter.getLocation_id() "+filter.getLocation_id() );
+        if (filter.getLocation_id() > 0) {
+            query = query.equalTo("location_id", filter.getLocation_id());
+        }
 
         if (filter.getMinPrice() != null && filter.getMaxPrice() != null) {
             query = query.between("price", filter.getMinPrice(), filter.getMaxPrice());
@@ -124,5 +135,25 @@ public class MiniRealmHelper {
         }
 
         return query.findAll();
+    }
+
+    public RealmResults<Location> getLocations() {
+        RealmResults<Location> results = realm.where(Location.class).findAll();
+        results.sort("location_id", Sort.ASCENDING);
+        return results;
+    }
+
+    public void insertLocation(int id, String name) {
+        Location location = new Location(id, name);
+        realm.beginTransaction();
+        realm.copyToRealmOrUpdate(location);
+        realm.commitTransaction();
+    }
+
+    public void deleteLocationById(int id) {
+        RealmResults<Location> dataResults = realm.where(Location.class).equalTo("location_id", id).findAll();
+        realm.beginTransaction();
+        dataResults.deleteFirstFromRealm();
+        realm.commitTransaction();
     }
 }

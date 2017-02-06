@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.septianfujianto.inventorymini">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
@@ -39,13 +40,17 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.product.DetailProductActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".ui.product.ListProductActivity">
+        <activity
+            android:name=".ui.product.DetailProductActivity"
+            android:parentActivityName=".ui.product.ListProductActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.backup.BackupActivity" />
+        <activity android:name=".ui.location.CreateLocationActivity"
+            android:parentActivityName=".ui.product.ListProductActivity"></activity>
     </application>
 
 </manifest>

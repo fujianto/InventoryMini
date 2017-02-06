@@ -29,7 +29,7 @@ public class App extends Application {
 
         Realm.init(this);
         RealmConfiguration config = new RealmConfiguration.Builder()
-                .schemaVersion(1) // Must be bumped when the schema changes
+                .schemaVersion(2) // Must be bumped when the schema changes
                 .migration(new MiniMigration()) // MiniMigration to run instead of throwing an exception
                 .build();
         Realm.setDefaultConfiguration(config);

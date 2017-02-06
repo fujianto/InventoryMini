@@ -30,7 +30,9 @@ import com.septianfujianto.inventorymini.R;
 import com.septianfujianto.inventorymini.models.ProductFilter;
 import com.septianfujianto.inventorymini.models.realm.MiniRealmHelper;
 import com.septianfujianto.inventorymini.models.realm.Product;
+import com.septianfujianto.inventorymini.ui.backup.BackupActivity;
 import com.septianfujianto.inventorymini.ui.category.CreateCategoryActivity;
+import com.septianfujianto.inventorymini.ui.location.CreateLocationActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -264,16 +266,10 @@ public class ListProductActivity extends AppCompatActivity
         if (id == R.id.nav_category) {
             startActivity(new Intent(App.getContext(), CreateCategoryActivity.class));
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.nav_import) {
+            startActivity(new Intent(App.getContext(), BackupActivity.class));
+        } else if (id == R.id.nav_location) {
+            startActivity(new Intent(App.getContext(), CreateLocationActivity.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

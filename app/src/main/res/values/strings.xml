@@ -13,12 +13,14 @@
     <string name="product_name">Nama</string>
     <string name="product_image">Gambar</string>
     <string name="product_category">Kategori</string>
+    <string name="product_location">Lokasi</string>
     <string name="create_category">Tambahkan</string>
     <string name="add_new">Tambahkan</string>
     <string name="add_new_image">Unggah Gambar</string>
     <string name="select_image">Pilih Gambar</string>
     <string name="product_category_id">Id Kategori</string>
-    <string name="select_cat">Pilih Kategori</string>
+    <string name="select_cat">Pilih kategori</string>
+    <string name="select_location">Pilih lokasi</string>
     <string name="product_desc">Deskripsi</string>
     <string name="product_qty">Jumlah</string>
     <string name="product_created">Tanggal dibuat</string>
@@ -30,6 +32,8 @@
     <string name="max_price">Harga maksimum</string>
     <string name="min_qty">Jumlah minimum</string>
     <string name="max_qty">Jumlah maksimum</string>
+    <string name="other_category">Lainnya</string>
+    <string name="other_location">Lainnya</string>
 
     <string name="sort_date_desc">Produk terbaru</string>
     <string name="sort_date_asc">Produk terlama</string>
@@ -44,14 +48,22 @@
     <string name="msg_category_created">Kategori dibuat</string>
     <string name="msg_category_error">Form kategori harus diisi</string>
     <string name="msg_product_created">Produk berhasil dibuat</string>
+    <string name="msg_location_created">Lokasi berhasil dibuat</string>
+    <string name="msg_location_error">Form lokasi harus diisi</string>
     <string name="msg_product_form_error">Form harus diisi</string>
 
     <!-- Action -->
     <string name="action_delete_all_product">Hapus semua produk</string>
     <string name="question_delete_all_product">Anda yakin ingin menghapus seluruh Produk?</string>
+    <string name="question_delete_single_product">Anda yakin ingin menghapus Produk?</string>
+
     <string name="action_search">Mencari </string>
     <string name="action_filter">Filter Product</string>
     <string name="action_sort">Sort Product</string>
+    <string name="backup_data">Backup data</string>
+    <string name="restore_data">Restore data</string>
+    <string name="backup_created">Backup berhasil dibuat. Cek backup file di folder Download/InventoryMini</string>
+
     <!-- Activity / Title -->
     <string name="bar_title_create_cat">Tambah Kategori</string>
     <string name="bar_title_create_product">Buat Produk</string>
