@@ -3,30 +3,12 @@
 
     <item
         is-multidex="false"
-        jar="D:\Projects\Android\InventoryMini\app\build\intermediates\exploded-aar\id.gits\baso\1.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="52f5c9302f16024dd0a68d99fa31d465d9944c2f">
-        <dex dex="D:\Projects\Android\InventoryMini\app\build\intermediates\pre-dexed\debug\id.gits-baso-1.0_8b1ad55c395181ffc64ed120b88257fde14a6634.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="D:\Projects\Android\InventoryMini\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
-        sha1="40adc12e125d4f5b4d64b2e5c7d5d1dc5125c012">
+        sha1="68be10e3e4c96f4efacdca4947620899649d506e">
         <dex dex="D:\Projects\Android\InventoryMini\app\build\intermediates\pre-dexed\debug\instant-run-bootstrap_0b6bba1eb03b1754bbe0d6aad3cbb338e4f1f085.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\Projects\Android\InventoryMini\app\build\intermediates\exploded-aar\eu.inloop\simplerecycleradapter\0.3.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="aa274927a0fd054e3c9ebf5d8972f86673761c94">
-        <dex dex="D:\Projects\Android\InventoryMini\app\build\intermediates\pre-dexed\debug\eu.inloop-simplerecycleradapter-0.3.1_1ffbdaa1b03f64dc4a893dd4b5ec2e72a92b5a50.jar" />
     </item>
     <item
         is-multidex="false"
@@ -102,15 +84,6 @@
     </item>
     <item
         is-multidex="false"
-        jar="D:\Projects\Android\InventoryMini\app\build\intermediates\exploded-aar\com.orhanobut\logger\1.15\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="2a156b99fc7cc034308f942906b09d32754a4470">
-        <dex dex="D:\Projects\Android\InventoryMini\app\build\intermediates\pre-dexed\debug\com.orhanobut-logger-1.15_3df7d9c4dff42127e8ea85034a9f9d5f9f7fe588.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="D:\Projects\Android\InventoryMini\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.1.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -135,15 +108,6 @@
         revision="25.0.1"
         sha1="b64dd5f01bc37de289f90fd59299b0c76d119611">
         <dex dex="D:\Projects\Android\InventoryMini\app\build\intermediates\pre-dexed\debug\com.getkeepsafe.relinker-relinker-1.2.2_fd4dfb798c35304d0fdbdea6ba0d4a2e9a2652f3.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Futura\.gradle\caches\modules-2\files-2.1\org.greenrobot\eventbus\3.0.0\ddd99896e9569eaababbe81b35d80e1b91c4ad85\eventbus-3.0.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="ddd99896e9569eaababbe81b35d80e1b91c4ad85">
-        <dex dex="D:\Projects\Android\InventoryMini\app\build\intermediates\pre-dexed\debug\eventbus-3.0.0_84ab9b571432c0888dda27aba1f0cad8e9f053fa.jar" />
     </item>
     <item
         is-multidex="false"
@@ -201,21 +165,21 @@
     </item>
     <item
         is-multidex="false"
+        jar="D:\Projects\Android\InventoryMini\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="5bf9e5f9ef6915d0ddc8c36c0405277a364322a0">
+        <dex dex="D:\Projects\Android\InventoryMini\app\build\intermediates\pre-dexed\debug\instant-run_f5391ebe5addabc698bd77d977a7f6fcf9e16c08.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="D:\Projects\Android\InventoryMini\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.1.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
         sha1="0a0ef86b7fa568a52bf6214a0326ca1f1d618da7">
         <dex dex="D:\Projects\Android\InventoryMini\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-utils-25.1.0_4aa5abb446dc42190665726b501b0e6f78dc78bd.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\Projects\Android\InventoryMini\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="94223f7819457267ad5d379b3d2448d7e50759ea">
-        <dex dex="D:\Projects\Android\InventoryMini\app\build\intermediates\pre-dexed\debug\instant-run_f5391ebe5addabc698bd77d977a7f6fcf9e16c08.jar" />
     </item>
     <item
         is-multidex="false"

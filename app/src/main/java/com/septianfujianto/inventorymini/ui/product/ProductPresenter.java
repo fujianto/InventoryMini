@@ -3,6 +3,8 @@ package com.septianfujianto.inventorymini.ui.product;
 import android.content.Context;
 
 import com.septianfujianto.inventorymini.App;
+import com.septianfujianto.inventorymini.models.realm.Category;
+import com.septianfujianto.inventorymini.models.realm.Location;
 import com.septianfujianto.inventorymini.models.realm.MiniRealmHelper;
 import com.septianfujianto.inventorymini.models.realm.Product;
 
@@ -38,10 +40,12 @@ public class ProductPresenter {
         return helper.getProducts();
     }
 
-    public void deleteAllProduct() {
+    public void deleteAllTable() {
         helper.deleteAllItem(Product.class);
-        listener.productDeleted();
+        helper.deleteAllItem(Category.class);
+        helper.deleteAllItem(Location.class);
 
+        listener.productDeleted();
     }
 
     public RealmResults<Product> searchProduct(String name) {

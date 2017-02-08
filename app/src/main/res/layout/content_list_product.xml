@@ -5,28 +5,15 @@
     android:id="@+id/content_list_product"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="60sp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.septianfujianto.inventorymini.ui.product.ListProductActivity"
     tools:showIn="@layout/app_bar_list_product">
 
-    <LinearLayout
-        android:id="@+id/searchWrap"
-        android:background="@color/colorPrimary"
-        android:paddingBottom="5sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <com.quinny898.library.persistentsearch.SearchBox
-            android:background="@color/colorPrimary"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/searchbox" />
-    </LinearLayout>
-
     <android.support.v7.widget.RecyclerView
-        android:layout_below="@+id/searchWrap"
-        android:layout_marginTop="10sp"
         android:id="@+id/rcv_listProduct"
+        android:clipToPadding="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
-
+        android:layout_height="wrap_content">
+    </android.support.v7.widget.RecyclerView>
 </RelativeLayout>

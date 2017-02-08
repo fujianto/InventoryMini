@@ -1,19 +1,20 @@
 package com.septianfujianto.inventorymini.ui.product;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
+import android.support.annotation.IdRes;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.BottomSheetDialogFragment;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.text.method.LinkMovementMethod;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -23,6 +24,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.joanzapata.iconify.IconDrawable;
 import com.joanzapata.iconify.fonts.FontAwesomeIcons;
@@ -36,14 +38,16 @@ import com.septianfujianto.inventorymini.models.realm.Product;
 import com.septianfujianto.inventorymini.ui.backup.BackupActivity;
 import com.septianfujianto.inventorymini.ui.category.CreateCategoryActivity;
 import com.septianfujianto.inventorymini.ui.location.CreateLocationActivity;
+import com.septianfujianto.inventorymini.utils.FileUtils;
+import com.septianfujianto.inventorymini.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.realm.RealmResults;
 import io.realm.Sort;
-
-import static com.septianfujianto.inventorymini.R.id.fab;
 
 public class ListProductActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, ProductPresenter.ProductPresenterListener {
@@ -57,6 +61,8 @@ public class ListProductActivity extends AppCompatActivity
     private Toolbar toolbar;
     private BottomSheetDialogFragment sortDialogFragment;
     private BottomSheetDialogFragment filterDialogFragment;
+    private View dialogView;
+    @BindView(R.id.bottom_navigation) BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +72,7 @@ public class ListProductActivity extends AppCompatActivity
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(getString(R.string.bar_title_latest_product));
         setSupportActionBar(toolbar);
+        ButterKnife.bind(this);
 
         context = this;
         helper = new MiniRealmHelper(this);
@@ -73,19 +80,13 @@ public class ListProductActivity extends AppCompatActivity
         sortDialogFragment = new SortDialogFragment();
         filterDialogFragment = new filterDialogFragment();
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+        setupDrawerNavigation();
+        setupSearchbox();
+        setupProductRecyclerview(savedInstanceState);
+        setupBottombar();
+    }
 
-                startActivity(new Intent(view.getContext(), CreateProductActivity.class));
-            }
-        });
-
-        fab.setImageDrawable(new IconDrawable(this, FontAwesomeIcons.fa_plus).colorRes(R.color.icons));
-
+    private void setupDrawerNavigation() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -95,10 +96,59 @@ public class ListProductActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        setupSearchbox();
-        setupProductRecyclerview(savedInstanceState);
+        Menu menu = navigationView.getMenu();
 
-        RealmResults<Product> res = helper.getProducts();
+        menu.findItem(R.id.nav_category).setIcon(new IconDrawable(context, FontAwesomeIcons.fa_tag)
+            .colorRes(R.color.icons).actionBarSize());
+
+        menu.findItem(R.id.nav_location).setIcon(new IconDrawable(context, FontAwesomeIcons.fa_location_arrow)
+                .colorRes(R.color.icons).actionBarSize());
+
+        menu.findItem(R.id.nav_import).setIcon(new IconDrawable(context, FontAwesomeIcons.fa_download)
+                .colorRes(R.color.icons).actionBarSize());
+
+        menu.findItem(R.id.nav_about).setIcon(new IconDrawable(context, FontAwesomeIcons.fa_info)
+                .colorRes(R.color.icons).actionBarSize());
+    }
+
+    private void setupBottombar() {
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.action_new_product:
+                        startActivity(new Intent(context, CreateProductActivity.class));
+                        return true;
+
+                    case R.id.action_sort:
+                        sortDialogFragment.show(getSupportFragmentManager(), sortDialogFragment.getTag());
+                        return true;
+
+                    case R.id.action_filter:
+                        filterDialogFragment.show(getSupportFragmentManager(), filterDialogFragment.getTag());
+                        return true;
+                }
+
+                return false;
+            }
+        });
+
+        bottomNavigationView.getMenu().findItem(R.id.action_new_product).setIcon(
+                new IconDrawable(this, FontAwesomeIcons.fa_plus_circle)
+                        .colorRes(R.color.icons)
+                        .actionBarSize());
+
+        bottomNavigationView.getMenu().findItem(R.id.action_filter).setIcon(
+                new IconDrawable(this, FontAwesomeIcons.fa_filter)
+                        .colorRes(R.color.icons)
+                        .actionBarSize());
+
+        bottomNavigationView.getMenu().findItem(R.id.action_sort).setIcon(
+                new IconDrawable(this, FontAwesomeIcons.fa_sort_amount_desc)
+                        .colorRes(R.color.icons)
+                        .actionBarSize());
+
+        bottomNavigationView.setMinimumHeight(170);
     }
 
     private void setupSearchbox() {
@@ -155,28 +205,6 @@ public class ListProductActivity extends AppCompatActivity
         products.addAll(results);
     }
 
-    private void deleteAllProduct() {
-        AlertDialog.Builder alert = new AlertDialog.Builder(context);
-        alert.setTitle(getResources().getString(R.string.question_delete_all_product));
-        alert.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                productPresenter.deleteAllProduct();
-            }
-        });
-
-        alert.setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-            }
-        });
-
-        alert.show();
-    }
-
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1234 && resultCode == RESULT_OK) {
@@ -200,7 +228,7 @@ public class ListProductActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.list_product, menu);
+       /* getMenuInflater().inflate(R.menu.list_product, menu);
 
         menu.findItem(R.id.action_filter).setIcon(
                 new IconDrawable(this, FontAwesomeIcons.fa_filter)
@@ -210,12 +238,7 @@ public class ListProductActivity extends AppCompatActivity
         menu.findItem(R.id.action_sort).setIcon(
                 new IconDrawable(this, FontAwesomeIcons.fa_sort_amount_desc)
                         .colorRes(R.color.icons)
-                        .actionBarSize());
-
-        menu.findItem(R.id.action_delete_all_product).setIcon(
-                new IconDrawable(this, FontAwesomeIcons.fa_trash)
-                        .colorRes(R.color.icons)
-                        .actionBarSize());
+                        .actionBarSize());*/
 
         return true;
     }
@@ -246,16 +269,14 @@ public class ListProductActivity extends AppCompatActivity
         if (id == R.id.action_sort) {
             sortDialogFragment.show(getSupportFragmentManager(),
                     sortDialogFragment.getTag());
-            return true;
-        } else if (id == R.id.action_delete_all_product) {
-            deleteAllProduct();
 
             return true;
-        } else if (id == R.id.action_filter) {
+
+        }  else if (id == R.id.action_filter) {
             filterDialogFragment.show(getSupportFragmentManager(), filterDialogFragment.getTag());
+
             return true;
         }
-
 
         return super.onOptionsItemSelected(item);
     }
@@ -273,11 +294,35 @@ public class ListProductActivity extends AppCompatActivity
             startActivity(new Intent(App.getContext(), BackupActivity.class));
         } else if (id == R.id.nav_location) {
             startActivity(new Intent(App.getContext(), CreateLocationActivity.class));
+        } else if (id == R.id.nav_about) {
+            setupAboutDialog();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void setupAboutDialog() {
+        AlertDialog.Builder alert = new AlertDialog.Builder(context);
+        alert.setTitle(getString(R.string.about_us));
+        try {
+            LayoutInflater inflater = this.getLayoutInflater();
+            dialogView = inflater.inflate(R.layout.layout_dialog_about, null);
+            TextView dialogContent = (TextView) dialogView.findViewById(R.id.dialogContent);
+            dialogContent.setMovementMethod(LinkMovementMethod.getInstance());
+            dialogContent.setText(Utils.printhtmlText(getString(R.string.translate_false_about_html)));
+            alert.setView(dialogView);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        alert.setNeutralButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {}
+        });
+
+        alert.show();
     }
 
     @Override

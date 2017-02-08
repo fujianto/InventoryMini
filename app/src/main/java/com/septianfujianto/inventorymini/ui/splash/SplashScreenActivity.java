@@ -17,7 +17,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
         helper = new MiniRealmHelper(this);
 
-       setDefaultRealmDB();
+        setDefaultRealmDB();
 
         final Intent intent = new Intent(this, ListProductActivity.class);
 
@@ -27,7 +27,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                 finish();
                 startActivity(intent);
             }
-        }, 1000);
+        }, 700);
     }
 
     private void setDefaultRealmDB() {

@@ -8,6 +8,7 @@
     <string name="action_settings">Settings</string>
     <string name="yes">Ya</string>
     <string name="no">Tidak</string>
+    <string name="ok">Oke</string>
 
     <!-- Form Field -->
     <string name="product_name">Nama</string>
@@ -35,6 +36,8 @@
     <string name="max_qty">Jumlah maksimum</string>
     <string name="other_category">Lainnya</string>
     <string name="other_location">Lainnya</string>
+    <string name="backup_restore">Backup / Restore</string>
+    <string name="about_us">Tentang Kami</string>
 
     <string name="sort_date_desc">Produk terbaru</string>
     <string name="sort_date_asc">Produk terlama</string>
@@ -52,19 +55,37 @@
     <string name="msg_location_created">Lokasi berhasil dibuat</string>
     <string name="msg_location_error">Form lokasi harus diisi</string>
     <string name="msg_product_form_error">Form harus diisi</string>
+    <string name="msg_only_json_error">Hanya menerima file berekstensi .json</string>
+
+    <!--Table Name-->
+    <string name="translate_false_table_product">Product</string>
+    <string name="translate_false_table_category">Category</string>
+    <string name="translate_false_table_location">Location</string>
+
+    <!-- Description -->
+    <string name="desc_backup">Gunakan tombol Backup data ke File untuk mengimpor seluruh database ke format JSON,
+        yang nantinya bisa diubah diluar aplikasi. Tombol Backup Database digunakan untuk melaukan Backup lokal.
+        Tombol Hapus seluruh Database akan menghapus seluruh data Barang dari Aplikasi.</string>
+
+    <string name="desc_restore">Untuk mengakses file backup, silahkan tekan tombol Restore data dari File. Lalu buka direktori Download > InventoryMini.
+    Silahkan pilih data yang ingin anda Restore. Pastikan anda tidak mengubah nama dari file backup untuk menghindari kegagalan pengembalian data.</string>
 
     <!-- Action -->
+    <string name="action_new_product">Tambah produk</string>
     <string name="action_delete_all_product">Hapus semua produk</string>
-    <string name="question_delete_all_product">Anda yakin ingin menghapus seluruh Produk?</string>
+    <string name="question_delete_all_product">Anda yakin ingin menghapus seluruh Data?</string>
     <string name="question_delete_single_product">Anda yakin ingin menghapus Produk?</string>
 
     <string name="action_search">Mencari </string>
-    <string name="action_filter">Filter Product</string>
-    <string name="action_sort">Sort Product</string>
-    <string name="backup_data">Backup data</string>
-    <string name="restore_data">Restore data</string>
+    <string name="action_filter">Filter Produk</string>
+    <string name="action_sort">Sort Produk</string>
+    <string name="backup_data">Backup data ke File</string>
+    <string name="backup_data_realm">Backup Database</string>
+    <string name="restore_data">Restore data dari File</string>
+    <string name="restore_data_realm">Restore Database</string>
     <string name="backup_created">Backup berhasil dibuat. Cek backup file di folder Download/InventoryMini</string>
-
+    <string name="delete_all">Hapus seluruh Database</string>
+    
     <!-- Activity / Title -->
     <string name="bar_title_create_cat">Tambah Kategori</string>
     <string name="bar_title_create_product">Buat Produk</string>
@@ -74,11 +95,72 @@
     <string name="bar_title_latest_product">Produk Terbaru</string>
 
     <!-- Store Settings -->
-    <string name="currency_symbol">Rp</string>
-    <string name="currency_grouping_sep">.</string>
-    <string name="currency_decimal_sep">,</string>
+    <string name="translate_false_currency_symbol">Rp</string>
+    <string name="translate_false_currency_grouping_sep">.</string>
+    <string name="translate_false_currency_decimal_sep">,</string>
     <string name="product_qty_symbol">buah</string>
 
     <!-- Intent String -->
-    <string name="productId">productId</string>
+    <string name="translate_false_productId">productId</string>
+
+    <string name="translate_false_about_html">
+        <![CDATA[
+           <h1>Inventory Mini 0.5</h1>
+
+            <span>&copy; Copyright 2017 <a href="http://septianfujianto.com/">Septian Ahmad Fujianto </a>
+            <span>Inventory Mini is licensed under the GPL v2 or later <a href="http://www.gnu.org/licenses/gpl-2.0.html">http://www.gnu.org/licenses/gpl-2.0.html</a></span>
+
+            <br />
+            <h2>Credits</h2>
+
+            <h3>Android SDK</h3>
+            <p>Licensed under Apache Software License, Version 2.0 by Google</p>
+            <br />
+
+            <h3>Google GSON</h3>
+            <p>Licensed under Apache Software License, Version 2.0 by Google</p>
+            <br />
+
+            <h3>Realm Java</h3>
+            <p>Licensed under Apache Software License, Version 2.0 by Realm.io</p>
+            <br />
+
+            <h3>Android Iconify</h3>
+            <p>Licensed under Apache Software License, Version 2.0 by Joan Zapata</p>
+            <br />
+
+            <h3>FontAwesome</h3>
+            <p>SIL OPEN FONT LICENSE Version, 1.1 by Dave Gandy</p>
+            <br />
+
+            <h3>Stetho</h3>
+            <p>Licensed under BSD License, Version 2.0 by Facebook, Inc</p>
+            <br />
+
+            <h3>Stetho Realm</h3>
+            <p>Licensed under BSD License, Version 2.0 by uPhyca, Inc</p>
+            <br />
+
+            <h3>Recovery</h3>
+            <p>Licensed under Apache Software License, Version 2.0 by zhengxiaoyong</p>
+            <br />
+
+            <h3>Butter Knife</h3>
+            <p>Licensed under Apache Software License, Version 2.0 by Jack Wharton</p>
+            <br />
+
+            <h3>ImagePicker</h3>
+            <p>Licensed under Apache Software License, Version 2.0 by Mario Velasco Casquero</p>
+            <br />
+
+            <h3>PersistentSearch</h3>
+            <p>Licensed under Apache Software License, Version 2.0 by Kieron Quinn</p>
+            <br />
+
+            <h3>ImagePicker</h3>
+            <p>Licensed under Apache Software License, Version 2.0 by nbsp team</p>
+            <br />
+
+        ]]>
+    </string>
 </resources>

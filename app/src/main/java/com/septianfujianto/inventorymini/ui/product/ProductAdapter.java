@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.septianfujianto.inventorymini.R;
@@ -47,14 +46,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductH
         int dbQty = products.get(pos).getProduct_qty();
 
         String price = dbPrice != null ? Utils.formatCurrency(
-                dbPrice, context.getString(R.string.currency_symbol)+" ",
-                context.getString(R.string.currency_grouping_sep).charAt(0),
-                context.getString(R.string.currency_decimal_sep).charAt(0)) : "";
+                dbPrice, context.getString(R.string.translate_false_currency_symbol)+" ",
+                context.getString(R.string.translate_false_currency_grouping_sep).charAt(0),
+                context.getString(R.string.translate_false_currency_decimal_sep).charAt(0)) : "";
 
         String bulkPrice = dbBulkPrice != null ? Utils.formatCurrency(
-                dbBulkPrice, context.getString(R.string.currency_symbol)+" ",
-                context.getString(R.string.currency_grouping_sep).charAt(0),
-                context.getString(R.string.currency_decimal_sep).charAt(0)) : "";
+                dbBulkPrice, context.getString(R.string.translate_false_currency_symbol)+" ",
+                context.getString(R.string.translate_false_currency_grouping_sep).charAt(0),
+                context.getString(R.string.translate_false_currency_decimal_sep).charAt(0)) : "";
 
         String qty = String.valueOf(dbQty) != null ? String.valueOf(dbQty) : "0";
 
@@ -74,7 +73,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductH
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, DetailProductActivity.class);
-                intent.putExtra(context.getString(R.string.productId), productId);
+                intent.putExtra(context.getString(R.string.translate_false_productId), productId);
                 context.startActivity(intent);
             }
         });

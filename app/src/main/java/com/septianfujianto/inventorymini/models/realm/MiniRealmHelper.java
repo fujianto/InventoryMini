@@ -178,6 +178,7 @@ public class MiniRealmHelper {
             realm.createOrUpdateAllFromJson(modelClass, jsonResult);
             realm.commitTransaction();
         } catch (Exception e) {
+            realm.cancelTransaction();
             e.printStackTrace();
         }
     }

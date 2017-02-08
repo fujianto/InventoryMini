@@ -9,11 +9,16 @@
         <item
             android:id="@+id/nav_location"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Lokasi" />
+            android:title="@string/product_location" />
         <item
             android:id="@+id/nav_import"
             android:icon="@android:drawable/ic_input_get"
-            android:title="Backup / Restore" />
+            android:title="@string/backup_restore" />
+
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@android:drawable/ic_dialog_info"
+            android:title="@string/about_us" />
     </group>
 
 </menu>

@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -59,6 +58,7 @@ public class CreateProductActivity extends AppCompatActivity implements ProductP
     private int productId;
     private ArrayAdapter<String> catAdapter;
     private ArrayAdapter<String> locationAdapter;
+    private Activity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +66,7 @@ public class CreateProductActivity extends AppCompatActivity implements ProductP
         setContentView(R.layout.activity_create_product);
         ButterKnife.bind(this);
         context = this;
+        activity = this;
         getSupportActionBar().setTitle(getString(R.string.bar_title_create_product));
         helper = new MiniRealmHelper(this);
         ImagePicker.setMinQuality(200, 200);
@@ -79,7 +80,7 @@ public class CreateProductActivity extends AppCompatActivity implements ProductP
         }
 
         if (extras != null) {
-            productId = extras.getInt(getString(R.string.productId));
+            productId = extras.getInt(getString(R.string.translate_false_productId));
 
             setupEditForm(productId);
         }
@@ -87,6 +88,7 @@ public class CreateProductActivity extends AppCompatActivity implements ProductP
         btnAddImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                new FileUtils().checkStoragePermissions(activity);
                 ImagePicker.pickImage((Activity) context, getString(R.string.select_image));
             }
         });
@@ -136,6 +138,8 @@ public class CreateProductActivity extends AppCompatActivity implements ProductP
     }
 
     public void resetFormField() {
+        spinnerCat.setSelection(0);
+        spinnerLocation.setSelection(0);
         productImage.setImageURI(null);
         productName.setText("");
         productQty.setText("");

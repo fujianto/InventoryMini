@@ -3,34 +3,23 @@ package com.septianfujianto.inventorymini.ui.product;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.septianfujianto.inventorymini.R;
 import com.septianfujianto.inventorymini.models.realm.MiniRealmHelper;
 import com.septianfujianto.inventorymini.models.realm.Product;
-import com.septianfujianto.inventorymini.utils.SquaredImageView;
 import com.septianfujianto.inventorymini.utils.Utils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static com.septianfujianto.inventorymini.R.id.producDesc;
-import static com.septianfujianto.inventorymini.R.id.productName;
-import static com.septianfujianto.inventorymini.R.id.productPriceBulk;
-import static com.septianfujianto.inventorymini.R.id.productTextLocation;
-import static com.septianfujianto.inventorymini.R.id.start;
 
 public class DetailProductActivity extends AppCompatActivity {
     private int productId;
@@ -98,7 +87,7 @@ public class DetailProductActivity extends AppCompatActivity {
 
     private void startEditProduct() {
         Intent intent = new Intent(context, CreateProductActivity.class);
-        intent.putExtra(getString(R.string.productId), productId);
+        intent.putExtra(getString(R.string.translate_false_productId), productId);
         finish();
         startActivity(intent);
     }
@@ -107,7 +96,7 @@ public class DetailProductActivity extends AppCompatActivity {
         extras = getIntent().getExtras();
 
         if (extras != null) {
-            productId = extras.getInt(getString(R.string.productId));
+            productId = extras.getInt(getString(R.string.translate_false_productId));
 
             try {
                 Product product = helper.getProductById(productId);
@@ -119,17 +108,17 @@ public class DetailProductActivity extends AppCompatActivity {
 
                 if (product.getPrice() != null) {
                     String formatPrice = Utils.formatCurrency(
-                            product.getPrice(), getString(R.string.currency_symbol)+" ",
-                            getString(R.string.currency_grouping_sep).charAt(0),
-                            getString(R.string.currency_decimal_sep).charAt(0));
+                            product.getPrice(), getString(R.string.translate_false_currency_symbol)+" ",
+                            getString(R.string.translate_false_currency_grouping_sep).charAt(0),
+                            getString(R.string.translate_false_currency_decimal_sep).charAt(0));
                     productTextPrice.setText(formatPrice);
                 }
 
                 if (product.getBulk_price() != null) {
                     String formatPrice = Utils.formatCurrency(
-                            product.getBulk_price(), getString(R.string.currency_symbol)+" ",
-                            getString(R.string.currency_grouping_sep).charAt(0),
-                            getString(R.string.currency_decimal_sep).charAt(0));
+                            product.getBulk_price(), getString(R.string.translate_false_currency_symbol)+" ",
+                            getString(R.string.translate_false_currency_grouping_sep).charAt(0),
+                            getString(R.string.translate_false_currency_decimal_sep).charAt(0));
                     productTextPriceBulk.setText(formatPrice);
                 }
 
