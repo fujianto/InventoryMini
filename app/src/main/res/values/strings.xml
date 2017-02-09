@@ -158,14 +158,9 @@
             <p>Licensed under Apache Software License, Version 2.0 by Mario Velasco Casquero</p>
             <br />
 
-            <h3>PersistentSearch</h3>
-            <p>Licensed under Apache Software License, Version 2.0 by Kieron Quinn</p>
-            <br />
-
-            <h3>ImagePicker</h3>
+            <h3>MaterialFilePicker</h3>
             <p>Licensed under Apache Software License, Version 2.0 by nbsp team</p>
             <br />
-
         ]]>
     </string>
 </resources>

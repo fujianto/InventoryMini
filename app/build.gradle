@@ -38,7 +38,6 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.5.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
     compile 'com.github.Mariovc:ImagePicker:1.0.5'
-    compile 'com.quinny898.library.persistentsearch:library:1.1.0-SNAPSHOT'
     compile 'com.nbsp:library:1.2'
     testCompile 'junit:junit:4.12'
 }

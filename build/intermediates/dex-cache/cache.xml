@@ -390,15 +390,6 @@
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\Futura\.gradle\caches\modules-2\files-2.1\com.nineoldandroids\library\2.4.0\e9b63380f3a242dbdbf103a2355ad7e43bad17cb\library-2.4.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
-        <dex dex="D:\Projects\Android\InventoryMini\app\build\intermediates\pre-dexed\debug\library-2.4.0_a819c95dff63d6e23fe249e1f83b1af03ab03507.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="D:\Projects\Android\InventoryMini\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\25.1.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -423,15 +414,6 @@
         revision="25.0.1"
         sha1="03555acd8e01e35485291e3ba2515449812a452d">
         <dex dex="D:\Projects\Android\InventoryMini\app\build\intermediates\pre-dexed\debug\com.github.Mariovc-ImagePicker-1.0.5_6d053614af730ad344866b8812089af7bbb7e0a0.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\Projects\Android\InventoryMini\app\build\intermediates\exploded-aar\com.quinny898.library.persistentsearch\library\1.1.0-SNAPSHOT\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="4c7250baed60ef7694c1c55723750831f3dbee67">
-        <dex dex="D:\Projects\Android\InventoryMini\app\build\intermediates\pre-dexed\debug\com.quinny898.library.persistentsearch-library-1.1.0-SNAPSHOT_33a6276da46fcd666ad41e60f7575dd05f3d32d0.jar" />
     </item>
     <item
         is-multidex="false"
@@ -579,15 +561,6 @@
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\Futura\.gradle\caches\modules-2\files-2.1\com.nineoldandroids\library\2.4.0\e9b63380f3a242dbdbf103a2355ad7e43bad17cb\library-2.4.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.1"
-        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
-        <dex dex="D:\Projects\Android\InventoryMini\app\build\intermediates\pre-dexed\debug\library-2.4.0_a819c95dff63d6e23fe249e1f83b1af03ab03507.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="D:\Projects\Android\InventoryMini\app\build\intermediates\exploded-aar\com.github.Mariovc\ImagePicker\1.0.5\jars\classes.jar"
         jumboMode="false"
         optimize="true"
@@ -675,15 +648,6 @@
         revision="25.0.1"
         sha1="de29a39f9260f88151b1ef453140e71c76b6c415">
         <dex dex="D:\Projects\Android\InventoryMini\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-crash-10.0.1_0a4f3bdf414a34e14580d0a74ac7983441e0cdec.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\Projects\Android\InventoryMini\app\build\intermediates\exploded-aar\com.quinny898.library.persistentsearch\library\1.1.0-SNAPSHOT\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.1"
-        sha1="4c7250baed60ef7694c1c55723750831f3dbee67">
-        <dex dex="D:\Projects\Android\InventoryMini\app\build\intermediates\pre-dexed\debug\com.quinny898.library.persistentsearch-library-1.1.0-SNAPSHOT_33a6276da46fcd666ad41e60f7575dd05f3d32d0.jar" />
     </item>
     <item
         is-multidex="false"

@@ -21,15 +21,29 @@
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
         <LinearLayout
+            app:layout_scrollFlags="scroll|enterAlways|snap"
+            android:orientation="vertical"
             android:id="@+id/searchWrap"
             android:background="@color/colorPrimary"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:paddingLeft="10sp"
+            android:paddingRight="10sp"
+            android:paddingTop="5sp"
+            android:paddingBottom="5sp"
             android:layout_height="wrap_content">
-            <com.quinny898.library.persistentsearch.SearchBox
-                android:background="@color/colorPrimary"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/searchbox" />
+            <EditText
+                android:drawableLeft="@android:drawable/ic_menu_search"
+                android:background="@drawable/edittext_box"
+                android:id="@+id/searc"
+                android:textColor="@color/primary_text"
+                android:paddingLeft="10sp"
+                android:paddingRight="10sp"
+                android:paddingTop="7sp"
+                android:paddingBottom="7sp"
+                android:maxLines="1"
+                android:hint="@string/action_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </LinearLayout>
     </android.support.design.widget.AppBarLayout>
 
