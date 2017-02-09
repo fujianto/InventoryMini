@@ -39,9 +39,15 @@ public class MiniRealmHelper {
     }
 
     public void insertItem(RealmModel model) {
-        realm.beginTransaction();
-        realm.copyToRealmOrUpdate(model);
-        realm.commitTransaction();
+        try {
+           if (model != null) {
+               realm.beginTransaction();
+               realm.copyToRealmOrUpdate(model);
+               realm.commitTransaction();
+           }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void deleteAllItem(Class obj) {
@@ -130,7 +136,7 @@ public class MiniRealmHelper {
         if (filter.getCategory_id() != null) {
             query = query.equalTo("category_id", filter.getCategory_id());
         }
-        System.out.println("` filter.getLocation_id() "+filter.getLocation_id() );
+
         if (filter.getLocation_id() > 0) {
             query = query.equalTo("location_id", filter.getLocation_id());
         }

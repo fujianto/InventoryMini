@@ -14,30 +14,34 @@ public class SplashScreenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash_screen);
+        //setContentView(R.layout.activity_splash_screen);
         helper = new MiniRealmHelper(this);
 
-        setDefaultRealmDB();
-
         final Intent intent = new Intent(this, ListProductActivity.class);
+        if (helper.getCategories().size() > 0 && helper.getCategories().size() > 0) {
+            finish();
+            startActivity(intent);
+        } else {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    finish();
+                    startActivity(intent);
+                    setDefaultRealmDB();
+                }
+            }, 1000);
+        }
 
-        new Handler().postDelayed(new Runnable(){
-            @Override
-            public void run() {
-                finish();
-                startActivity(intent);
-            }
-        }, 700);
     }
 
     private void setDefaultRealmDB() {
         // Default category
-        if (helper.getCategories() != null || helper.getCategories().size() > 0) {
+        if (helper.getCategories().size() <= 0) {
             helper.insertCategory(0, getString(R.string.other_category));
         }
 
         // Default Location
-        if (helper.getLocations() != null || helper.getLocations().size() > 0) {
+        if (helper.getLocations().size() <= 0) {
             helper.insertLocation(0, getString(R.string.other_location));
         }
     }

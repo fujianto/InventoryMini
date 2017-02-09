@@ -55,6 +55,11 @@
     <string name="msg_location_created">Lokasi berhasil dibuat</string>
     <string name="msg_location_error">Form lokasi harus diisi</string>
     <string name="msg_product_form_error">Form harus diisi</string>
+    <string name="msg_product_qty_error">Jumlah produk harus disi</string>
+    <string name="msg_product_cat_error">Kategori produk harus disi</string>
+    <string name="msg_product_location_error">Lokasi produk harus disi</string>
+    <string name="msg_product_name_error">Nama produk harus disi</string>
+    <string name="msg_product_price_error">Harga produk harus disi</string>
     <string name="msg_only_json_error">Hanya menerima file berekstensi .json</string>
 
     <!--Table Name-->

@@ -59,6 +59,7 @@ public class CreateProductActivity extends AppCompatActivity implements ProductP
     private ArrayAdapter<String> catAdapter;
     private ArrayAdapter<String> locationAdapter;
     private Activity activity;
+    private String validatedMessage = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +98,6 @@ public class CreateProductActivity extends AppCompatActivity implements ProductP
             @Override
             public void onClick(View view) {
                 productPresenter.addNewProduct();
-                resetFormField();
             }
         });
     }
@@ -112,7 +112,6 @@ public class CreateProductActivity extends AppCompatActivity implements ProductP
             int locationId = product.getLocation_id();
             Location locationResults = helper.getLocationById(locationId);
             String locationName = locationResults.getLocation_name();
-
 
             if (!catName.equals(null)) {
                 spinnerCat.setSelection(catAdapter.getPosition(catName));
@@ -131,7 +130,7 @@ public class CreateProductActivity extends AppCompatActivity implements ProductP
             productQty.setText(String.valueOf(product.getProduct_qty()));
             productDesc.setText(product.getProduct_desc());
             productPrice.setText(String.valueOf(product.getPrice()));
-            productPriceBulk.setText(String.valueOf(product.getBulk_price()));
+            productPriceBulk.setText(product.getBulk_price() != null ? String.valueOf(product.getBulk_price()) : "");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -212,14 +211,38 @@ public class CreateProductActivity extends AppCompatActivity implements ProductP
     }
 
     private Boolean isValidProductFormField() {
-        if (Utils.isFormFilled(productName.getText().toString()) &&
-            productQty.getText().toString().length() > 0 &&
-            Utils.isFormFilled(productPrice.getText().toString())  ) {
-
-            return true;
+        if (Utils.isFormFilled(productName.getText().toString()) == false) {
+            productName.setError(getString(R.string.msg_product_name_error));
+            validatedMessage = getString(R.string.msg_product_name_error);
+            return false;
         }
 
-        return false;
+        else if (productQty.getText().toString().length() < 1) {
+            productQty.setError(getString(R.string.msg_product_qty_error));
+            validatedMessage = getString(R.string.msg_product_qty_error);
+            return false;
+        }
+
+        else if (productPrice.getText().toString().length() < 1) {
+            productPrice.setError(getString(R.string.msg_product_price_error));
+            validatedMessage = getString(R.string.msg_product_price_error);
+            return false;
+        }
+
+        else if (spinnerCat.getSelectedItemPosition() == 0) {
+            validatedMessage = getString(R.string.msg_product_cat_error);
+            return false;
+        }
+
+        else if (spinnerLocation.getSelectedItemPosition() == 0) {
+            validatedMessage = getString(R.string.msg_product_location_error);
+            return false;
+        }
+
+        else {
+            validatedMessage = getString(R.string.msg_product_created);
+            return true;
+        }
     }
 
     @Override
@@ -229,7 +252,7 @@ public class CreateProductActivity extends AppCompatActivity implements ProductP
 
     @Override
     public void productUpdated() {
-
+        resetFormField();
     }
 
     @Override
@@ -271,15 +294,13 @@ public class CreateProductActivity extends AppCompatActivity implements ProductP
             product.setDate_created(Utils.getTodayDate(""));
             product.setDate_modified(Utils.getTodayDate(""));
 
-            Toast.makeText(context, getString(R.string.msg_product_created), Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, validatedMessage, Toast.LENGTH_SHORT).show();
 
             return product;
         } else {
-            Toast.makeText(context, getString(R.string.msg_product_form_error), Toast.LENGTH_SHORT).show();
-            return product;
+            Toast.makeText(context, validatedMessage, Toast.LENGTH_SHORT).show();
+            return null;
         }
-
-
     }
 
     @Override

@@ -125,11 +125,16 @@ public class DetailProductActivity extends AppCompatActivity {
                 productName.setText(product.getProduct_name());
                 productTextQty.setText(String.valueOf(product.getProduct_qty())+" "+getString(R.string.product_qty_symbol));
 
-                String categoryLabel = helper.getCategoryById(Integer.valueOf(product.getCategory_id())).getCategory_name();
-                String locationLabel = helper.getLocationById(product.getLocation_id()).getLocation_name();
-                System.out.println("locationLabel `` "+locationLabel);
-                productTextCategory.setText(categoryLabel);
-                productTextLocation.setText(locationLabel);
+                if (product.getCategory_id() != null) {
+                    String categoryLabel = helper.getCategoryById(Integer.valueOf(product.getCategory_id())).getCategory_name();
+                    productTextCategory.setText(categoryLabel);
+                }
+
+                if (String.valueOf(product.getLocation_id()) != null) {
+                    String locationLabel = helper.getLocationById(product.getLocation_id()).getLocation_name();
+                    productTextLocation.setText(locationLabel);
+                }
+
                 productDetail.setText(product.getProduct_desc());
 
             } catch (Exception e) {
