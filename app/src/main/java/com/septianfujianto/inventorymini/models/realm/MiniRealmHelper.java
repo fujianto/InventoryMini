@@ -1,6 +1,7 @@
 package com.septianfujianto.inventorymini.models.realm;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.septianfujianto.inventorymini.models.ProductFilter;
@@ -8,6 +9,13 @@ import com.septianfujianto.inventorymini.models.ProductFilter;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import io.realm.Case;
 import io.realm.Realm;
@@ -18,6 +26,7 @@ import io.realm.RealmResults;
 import io.realm.Sort;
 
 import static android.R.attr.category;
+import static com.septianfujianto.inventorymini.R.string.product_brand;
 
 /**
  * Created by Septian A. Fujianto on 1/30/2017.
@@ -149,6 +158,10 @@ public class MiniRealmHelper {
             query = query.between("product_qty", filter.getMinQty(), filter.getMaxQty());
         }
 
+        if (filter.getProduct_brand().length() > 0) {
+            query = query.contains("product_brand", filter.getProduct_brand());
+        }
+
         return query.findAll();
     }
 
@@ -187,5 +200,34 @@ public class MiniRealmHelper {
             realm.cancelTransaction();
             e.printStackTrace();
         }
+    }
+
+    public List<String> getProductsAutocompleteLabel(String column, String[] defaultLabel) {
+        List<String> defLabel = Arrays.asList(defaultLabel);
+        List<String> listLabel = new ArrayList<>();
+        RealmResults<Product> results = realm.where(Product.class).findAll();
+
+        listLabel.addAll(defLabel);
+
+        for (Product item : results) {
+            if (TextUtils.equals(column, "product_qty_label")) {
+                listLabel.add(item.getProduct_qty_label());
+            }
+
+            if (TextUtils.equals(column, "product_brand")) {
+                listLabel.add(item.getProduct_brand());
+            }
+
+            if (TextUtils.equals(column, "product_weight_label")) {
+                listLabel.add(item.getProduct_weight_label());
+            }
+        }
+
+        Set<String> hs = new HashSet<>();
+        hs.addAll(listLabel);
+        listLabel.clear();
+        listLabel.addAll(hs);
+
+        return listLabel;
     }
 }

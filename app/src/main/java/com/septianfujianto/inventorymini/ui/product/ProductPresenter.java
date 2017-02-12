@@ -61,8 +61,6 @@ public class ProductPresenter {
         helper = new MiniRealmHelper(context);
 
         if (listener.createdProduct() != null) {
-            System.out.println(listener.createdProduct().getProduct_name());
-            System.out.println(listener.createdProduct().getPrice());
             helper.insertItem(listener.createdProduct());
 
             listener.productUpdated();

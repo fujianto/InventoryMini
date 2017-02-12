@@ -9,6 +9,8 @@ public class ProductFilter {
     private Double minPrice, maxPrice;
     private int minQty, maxQty;
     private int location_id;
+    private String product_brand;
+    private int product_weight;
 
     public ProductFilter() {}
 
@@ -19,6 +21,22 @@ public class ProductFilter {
         this.minQty = minQty;
         this.maxQty = maxQty;
         this.location_id = location_id;
+    }
+
+    public String getProduct_brand() {
+        return product_brand;
+    }
+
+    public void setProduct_brand(String product_brand) {
+        this.product_brand = product_brand;
+    }
+
+    public int getProduct_weight() {
+        return product_weight;
+    }
+
+    public void setProduct_weight(int product_weight) {
+        this.product_weight = product_weight;
     }
 
     public int getLocation_id() {

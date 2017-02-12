@@ -15,8 +15,11 @@
     <string name="product_image">Gambar</string>
     <string name="product_quantity">Jumlah</string>
     <string name="product_category">Kategori</string>
+    <string name="product_brand">Merek</string>
+    <string name="product_weight">Berat</string>
     <string name="product_location">Lokasi</string>
     <string name="create_category">Tambahkan</string>
+    <string name="product_qty_wacth">Tambah pengingat saat jumlah produk dibawah</string>
     <string name="add_new">Tambahkan</string>
     <string name="add_new_image">Unggah Gambar</string>
     <string name="select_image">Pilih Gambar</string>
@@ -48,10 +51,27 @@
     <string name="sort_qty_desc">Jumlah terbanyak</string>
     <string name="sort_qty_asc">Jumlah Terendah</string>
 
+    <array name="qty_label">
+        <item name="pcs" translatable="false">pcs</item>
+        <item name="box" translatable="false">box</item>
+        <item name="bottle" translatable="false">bottle</item>
+    </array>
+
+    <array name="weight_label">
+        <item name="gr" translatable="false">gr</item>
+        <item name="kg" translatable="false">kg</item>
+        <item name="lbs" translatable="false">lbs</item>
+    </array>
+
+    <array name="brand_content">
+        <item name="other">Lainnya</item>
+    </array>
+
     <!-- Form Message -->
     <string name="msg_category_created">Kategori dibuat</string>
     <string name="msg_category_error">Form kategori harus diisi</string>
     <string name="msg_product_created">Produk berhasil dibuat</string>
+    <string name="msg_product_updated">Produk berhasil diperbarui</string>
     <string name="msg_location_created">Lokasi berhasil dibuat</string>
     <string name="msg_location_error">Form lokasi harus diisi</string>
     <string name="msg_product_form_error">Form harus diisi</string>
@@ -63,9 +83,9 @@
     <string name="msg_only_json_error">Hanya menerima file berekstensi .json</string>
 
     <!--Table Name-->
-    <string name="translate_false_table_product">Product</string>
-    <string name="translate_false_table_category">Category</string>
-    <string name="translate_false_table_location">Location</string>
+    <string name="translate_false_table_product" translatable="false">Product</string>
+    <string name="translate_false_table_category" translatable="false">Category</string>
+    <string name="translate_false_table_location" translatable="false">Location</string>
 
     <!-- Description -->
     <string name="desc_backup">Gunakan tombol Backup data ke File untuk mengimpor seluruh database ke format JSON,
@@ -80,6 +100,7 @@
     <string name="action_delete_all_product">Hapus semua produk</string>
     <string name="question_delete_all_product">Anda yakin ingin menghapus seluruh Data?</string>
     <string name="question_delete_single_product">Anda yakin ingin menghapus Produk?</string>
+    <string name="editing_product">Memperbarui Produk</string>
 
     <string name="action_search">Mencari </string>
     <string name="action_filter">Filter Produk</string>
@@ -90,7 +111,7 @@
     <string name="restore_data_realm">Restore Database</string>
     <string name="backup_created">Backup berhasil dibuat. Cek backup file di folder Download/InventoryMini</string>
     <string name="delete_all">Hapus seluruh Database</string>
-    
+
     <!-- Activity / Title -->
     <string name="bar_title_create_cat">Tambah Kategori</string>
     <string name="bar_title_create_product">Buat Produk</string>
@@ -100,15 +121,15 @@
     <string name="bar_title_latest_product">Produk Terbaru</string>
 
     <!-- Store Settings -->
-    <string name="translate_false_currency_symbol">Rp</string>
-    <string name="translate_false_currency_grouping_sep">.</string>
-    <string name="translate_false_currency_decimal_sep">,</string>
+    <string name="translate_false_currency_symbol" translatable="false">Rp</string>
+    <string name="translate_false_currency_grouping_sep" translatable="false">.</string>
+    <string name="translate_false_currency_decimal_sep" translatable="false">,</string>
     <string name="product_qty_symbol">buah</string>
 
     <!-- Intent String -->
-    <string name="translate_false_productId">productId</string>
+    <string name="translate_false_productId" translatable="false">productId</string>
 
-    <string name="translate_false_about_html">
+    <string name="translate_false_about_html" translatable="false">
         <![CDATA[
            <h1>Inventory Mini 0.5</h1>
 

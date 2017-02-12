@@ -21,26 +21,54 @@ public class Product extends RealmObject {
     private Double bulk_price;
     private String date_created;
     private String date_modified;
+    private String product_brand;
+    private String product_qty_label;
+    private int product_weight;
+    private String product_weight_label;
+    private int product_qty_watch;
 
     public Product() {
 
     }
 
-    public Product(int product_id, String product_name, String product_desc, String product_image,
-                   int product_qty, String category_id, int location_id, Double price, Double sale_price,
-                   Double bulk_price, String date_created, String date_modified) {
-        this.product_id = product_id;
-        this.product_name = product_name;
-        this.product_desc = product_desc;
-        this.product_image = product_image;
-        this.product_qty = product_qty;
-        this.category_id = category_id;
-        this.location_id = location_id;
-        this.price = price;
-        this.sale_price = sale_price;
-        this.bulk_price = bulk_price;
-        this.date_created = date_created;
-        this.date_modified = date_modified;
+    public String getProduct_weight_label() {
+        return product_weight_label;
+    }
+
+    public void setProduct_weight_label(String product_weight_label) {
+        this.product_weight_label = product_weight_label;
+    }
+
+    public String getProduct_brand() {
+        return product_brand;
+    }
+
+    public void setProduct_brand(String product_brand) {
+        this.product_brand = product_brand;
+    }
+
+    public String getProduct_qty_label() {
+        return product_qty_label;
+    }
+
+    public void setProduct_qty_label(String product_qty_label) {
+        this.product_qty_label = product_qty_label;
+    }
+
+    public int getProduct_weight() {
+        return product_weight;
+    }
+
+    public void setProduct_weight(int product_weight) {
+        this.product_weight = product_weight;
+    }
+
+    public int getProduct_qty_watch() {
+        return product_qty_watch;
+    }
+
+    public void setProduct_qty_watch(int product_qty_watch) {
+        this.product_qty_watch = product_qty_watch;
     }
 
     public int getLocation_id() {

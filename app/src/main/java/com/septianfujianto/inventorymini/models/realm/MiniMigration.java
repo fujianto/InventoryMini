@@ -1,5 +1,8 @@
 package com.septianfujianto.inventorymini.models.realm;
 
+import com.septianfujianto.inventorymini.App;
+import com.septianfujianto.inventorymini.R;
+
 import io.realm.DynamicRealm;
 import io.realm.DynamicRealmObject;
 import io.realm.RealmMigration;
@@ -38,6 +41,47 @@ public class MiniMigration implements RealmMigration {
 
             schema.get("Product")
                     .addField("location_id", int.class);
+
+            oldVersion++;
+        }
+
+        if (oldVersion == 2) {
+            RealmObjectSchema productSchema = schema.get("Product");
+            productSchema.addField("product_brand", String.class)
+                    .transform(new RealmObjectSchema.Function() {
+                        @Override
+                        public void apply(DynamicRealmObject obj) {
+                            obj.set("product_brand", App.getContext().getString(R.string.other_location));
+                        }
+                    })
+            .addField("product_qty_label", String.class)
+                    .transform(new RealmObjectSchema.Function() {
+                        @Override
+                        public void apply(DynamicRealmObject obj) {
+                            obj.set("product_qty_label", "pcs");
+                        }
+                    })
+            .addField("product_weight", int.class)
+                    .transform(new RealmObjectSchema.Function() {
+                        @Override
+                        public void apply(DynamicRealmObject obj) {
+                            obj.set("product_weight", 1);
+                        }
+                    })
+            .addField("product_weight_label", String.class)
+                    .transform(new RealmObjectSchema.Function() {
+                        @Override
+                        public void apply(DynamicRealmObject obj) {
+                            obj.set("product_weight_label", "gr");
+                        }
+                    })
+            .addField("product_qty_watch", int.class)
+                    .transform(new RealmObjectSchema.Function() {
+                        @Override
+                        public void apply(DynamicRealmObject obj) {
+                            obj.set("product_qty_watch", 1);
+                        }
+                    });
 
             oldVersion++;
         }

@@ -123,7 +123,7 @@ public class DetailProductActivity extends AppCompatActivity {
                 }
 
                 productName.setText(product.getProduct_name());
-                productTextQty.setText(String.valueOf(product.getProduct_qty())+" "+getString(R.string.product_qty_symbol));
+                productTextQty.setText(String.valueOf(product.getProduct_qty())+" "+product.getProduct_qty_label());
 
                 if (product.getCategory_id() != null) {
                     String categoryLabel = helper.getCategoryById(Integer.valueOf(product.getCategory_id())).getCategory_name();

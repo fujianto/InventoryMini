@@ -67,7 +67,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductH
 
         holder.productTitle.setText(dbTitle);
         holder.productPrice.setText(price);
-        holder.productQty.setText(qty+" "+context.getString(R.string.product_qty_symbol));
+        holder.productQty.setText(qty+" "+products.get(pos).getProduct_qty_label());
 
         holder.productWrapper.setOnClickListener(new View.OnClickListener() {
             @Override

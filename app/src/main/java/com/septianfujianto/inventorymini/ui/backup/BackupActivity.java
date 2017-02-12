@@ -83,10 +83,6 @@ public class BackupActivity extends AppCompatActivity {
                     String fileExtension = filenameArray[filenameArray.length-1];
                     String tableType = TextUtils.split(filename, "-")[0];
 
-                    System.out.println("`` filename "+filename);
-                    System.out.println("`` fileExtension "+fileExtension);
-                    System.out.println("`` tableType "+tableType);
-
                     if (TextUtils.equals(fileExtension, "json") == false) {
                         Toast.makeText(mContext, getString(R.string.msg_only_json_error), Toast.LENGTH_SHORT).show();
                     } else {

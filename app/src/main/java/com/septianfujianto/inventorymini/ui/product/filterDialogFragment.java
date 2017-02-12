@@ -20,6 +20,7 @@ import com.septianfujianto.inventorymini.models.ProductFilter;
 import com.septianfujianto.inventorymini.models.realm.Category;
 import com.septianfujianto.inventorymini.models.realm.Location;
 import com.septianfujianto.inventorymini.models.realm.MiniRealmHelper;
+import com.septianfujianto.inventorymini.utils.InstantAutoComplete;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,7 @@ import io.realm.RealmResults;
 import static android.R.attr.filter;
 import static com.septianfujianto.inventorymini.R.id.filterMaxQty;
 import static com.septianfujianto.inventorymini.R.id.filterMinQty;
+import static com.septianfujianto.inventorymini.R.id.productQtyLabel;
 
 /**
  * Created by Septian A. Fujianto on 2/4/2017.
@@ -43,6 +45,7 @@ public class filterDialogFragment extends BottomSheetDialogFragment {
     private List<String> listLocationLabel;
     private List<Integer> listLocationId;
     private MiniRealmHelper helper;
+    private InstantAutoComplete productBrand;
 
     @Nullable
     @Override
@@ -57,6 +60,7 @@ public class filterDialogFragment extends BottomSheetDialogFragment {
         minQty = (EditText) contentView.findViewById(filterMinQty);
         maxQty = (EditText) contentView.findViewById(filterMaxQty);
         btnFilter = (Button) contentView.findViewById(R.id.btnFilter);
+        productBrand = (InstantAutoComplete) contentView.findViewById(R.id.productBrand);
 
         listCatId = new ArrayList<>();
         listCatLabel = new ArrayList<>();
@@ -65,6 +69,7 @@ public class filterDialogFragment extends BottomSheetDialogFragment {
 
         setupCatSpinner();
         setupLocationSpinner();
+        setupBrandAutocomplete();
 
         btnFilter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,6 +80,16 @@ public class filterDialogFragment extends BottomSheetDialogFragment {
 
         return contentView;
 
+    }
+
+    private void setupBrandAutocomplete() {
+        String[] brandLabel = getResources().getStringArray(R.array.brand_content);
+        List<String> brandContentLbl = helper.getProductsAutocompleteLabel("product_brand", brandLabel);
+
+        ArrayAdapter<String> brandAdapter = new ArrayAdapter<>
+                (getActivity(), android.R.layout.simple_list_item_1, brandContentLbl);
+        productBrand.setText(brandContentLbl.get(0));
+        productBrand.setAdapter(brandAdapter);
     }
 
     private void filterProducts() {
@@ -92,6 +107,10 @@ public class filterDialogFragment extends BottomSheetDialogFragment {
         if (spinnerLocation.getSelectedItemPosition() > 0) {
             selLocationId = listLocationId.get(spinnerLocation.getSelectedItemPosition() - 1);
             filter.setLocation_id(selLocationId);
+        }
+
+        if (productBrand.getText().length() > 0) {
+            filter.setProduct_brand(productBrand.getText().toString());
         }
 
         if (minPrice.getText().toString().length() > 0 && maxPrice.getText().toString().length() > 0) {

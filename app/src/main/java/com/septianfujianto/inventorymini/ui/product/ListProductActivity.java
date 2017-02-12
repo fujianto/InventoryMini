@@ -1,13 +1,11 @@
 package com.septianfujianto.inventorymini.ui.product;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
-import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.BottomSheetDialogFragment;
@@ -31,7 +29,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.joanzapata.iconify.IconDrawable;
-import com.joanzapata.iconify.Iconify;
 import com.joanzapata.iconify.fonts.FontAwesomeIcons;
 import com.septianfujianto.inventorymini.App;
 import com.septianfujianto.inventorymini.R;
@@ -41,7 +38,6 @@ import com.septianfujianto.inventorymini.models.realm.Product;
 import com.septianfujianto.inventorymini.ui.backup.BackupActivity;
 import com.septianfujianto.inventorymini.ui.category.CreateCategoryActivity;
 import com.septianfujianto.inventorymini.ui.location.CreateLocationActivity;
-import com.septianfujianto.inventorymini.utils.FileUtils;
 import com.septianfujianto.inventorymini.utils.Utils;
 
 import java.util.ArrayList;
@@ -56,7 +52,6 @@ public class ListProductActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, ProductPresenter.ProductPresenterListener {
     private Context context;
     private MiniRealmHelper helper;
-    //private SearchBox search;
     private ProductAdapter adapter;
     private List<Product> products;
     private RecyclerView rcvProduct;
@@ -66,15 +61,15 @@ public class ListProductActivity extends AppCompatActivity
     private BottomSheetDialogFragment filterDialogFragment;
     private View dialogView;
     @BindView(R.id.bottom_navigation) BottomNavigationView bottomNavigationView;
-    @BindView(R.id.searc) EditText searc;
+    @BindView(R.id.searcbox) EditText searchbox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_product);
-        //search = (SearchBox) findViewById(R.id.searchbox);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(getString(R.string.bar_title_latest_product));
+
         setSupportActionBar(toolbar);
         ButterKnife.bind(this);
 
@@ -85,36 +80,9 @@ public class ListProductActivity extends AppCompatActivity
         filterDialogFragment = new filterDialogFragment();
 
         setupDrawerNavigation();
-        //setupSearchbox();
+        setupSearchbox();
         setupProductRecyclerview(savedInstanceState);
         setupBottombar();
-
-        Drawable icon = new IconDrawable(this, FontAwesomeIcons.fa_search).colorRes(R.color.secondary_text).sizeDp(15);
-        searc.setCompoundDrawables(icon, null, null, null);
-        searc.setCompoundDrawablePadding(10);
-        searc.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                RealmResults<Product> results  = productPresenter.searchProduct(charSequence.toString());
-                productPresenter.recyclerviewUpdated();
-                products.addAll(results);
-                toolbar.setTitle(getString(R.string.action_search)+" "+charSequence.toString());
-
-                if (charSequence.toString().length() < 1) {
-                    toolbar.setTitle(getString(R.string.bar_title_latest_product));
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
     }
 
     private void setupDrawerNavigation() {
@@ -182,47 +150,34 @@ public class ListProductActivity extends AppCompatActivity
         bottomNavigationView.setMinimumHeight(170);
     }
 
-    /*private void setupSearchbox() {
-        search.enableVoiceRecognition(this);
-        search.setMenuVisibility(View.INVISIBLE);
-        search.setDrawerLogo(new IconDrawable(context, FontAwesomeIcons.fa_search).colorRes(R.color.secondary_text));
-        search.setAnimateDrawerLogo(false);
-        search.setSearchWithoutSuggestions(true);
-        search.setSearchListener(new SearchBox.SearchListener() {
+    private void setupSearchbox() {
+        Drawable icon = new IconDrawable(this, FontAwesomeIcons.fa_search).colorRes(R.color.secondary_text).sizeDp(15);
+        searchbox.setCompoundDrawables(icon, null, null, null);
+        searchbox.setCompoundDrawablePadding(10);
+        searchbox.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onSearchOpened() {
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
             }
 
             @Override
-            public void onSearchCleared() {
-
-            }
-
-            @Override
-            public void onSearchClosed() {
-
-            }
-
-            @Override
-            public void onSearchTermChanged(String s) {
-                RealmResults<Product> results  = productPresenter.searchProduct(s);
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                RealmResults<Product> results  = productPresenter.searchProduct(charSequence.toString());
                 productPresenter.recyclerviewUpdated();
                 products.addAll(results);
-                toolbar.setTitle(getString(R.string.action_search)+" "+s);
+                toolbar.setTitle(getString(R.string.action_search)+" "+charSequence.toString());
+
+                if (charSequence.toString().length() < 1) {
+                    toolbar.setTitle(getString(R.string.bar_title_latest_product));
+                }
             }
 
             @Override
-            public void onSearch(String s) {
-                //Toast.makeText(context, "Mencari "+s, Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onResultClick(SearchResult searchResult) {
+            public void afterTextChanged(Editable editable) {
 
             }
         });
-    }*/
+    }
 
     private void setupProductRecyclerview(Bundle savedInstanceState) {
         products = new ArrayList<>();
@@ -234,16 +189,6 @@ public class ListProductActivity extends AppCompatActivity
 
         final RealmResults<Product> results = productPresenter.getProducts();
         products.addAll(results);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1234 && resultCode == RESULT_OK) {
-            ArrayList<String> matches = data
-                    .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-            //search.populateEditText(matches.get(0));
-        }
-        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
