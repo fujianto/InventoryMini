@@ -40,7 +40,7 @@ public class CreateLocationActivity extends AppCompatActivity implements Locatio
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_location);
         ButterKnife.bind(this);
-
+        getSupportActionBar().setTitle(getString(R.string.bar_title_create_location));
         mRecyclerView = (RecyclerView) findViewById(R.id.rcv_location);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setHasFixedSize(true);

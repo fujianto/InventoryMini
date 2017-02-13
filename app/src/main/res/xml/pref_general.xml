@@ -1,0 +1,71 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- NOTE: EditTextPreference accepts EditText attributes. -->
+    <!-- NOTE: EditTextPreference's summary should be set to its value by the activity code. -->
+    <EditTextPreference
+        android:capitalize="words"
+        android:defaultValue="@string/pref_default_display_name"
+        android:inputType="textCapWords"
+        android:key="owner_name"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_title_display_name" />
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:defaultValue="@string/pref_default_owner_email"
+        android:inputType="textEmailAddress"
+        android:key="owner_email"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_title_owner_email" />
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:defaultValue="@string/pref_default_store_name"
+        android:inputType="textCapWords"
+        android:key="store_name"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_title_store_name" />
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:defaultValue="@string/pref_default_store_address"
+        android:inputType="textCapWords"
+        android:key="store_address"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_title_store_address" />
+
+    <ListPreference
+        android:defaultValue="Rp"
+        android:entries="@array/pref_currency_symbol"
+        android:entryValues="@array/pref_currency_symbol"
+        android:key="currency_symbol"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/pref_title_currency_symbol" />
+
+    <EditTextPreference
+        android:defaultValue=","
+        android:inputType="text"
+        android:key="decimal_separator"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_title_decimal_sep" />
+
+    <EditTextPreference
+        android:defaultValue="."
+        android:inputType="text"
+        android:key="grouping_separator"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_title_grouping_sep" />
+</PreferenceScreen>

@@ -112,13 +112,43 @@
                             android:fontFamily="sans-serif-condensed"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
-                        <Spinner
+
+                        <LinearLayout
                             android:layout_marginTop="5sp"
                             android:layout_marginBottom="5sp"
-                            android:id="@+id/productCat"
+                            android:orientation="horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
-                        </Spinner>
+                            <LinearLayout
+                                android:gravity="center_vertical"
+                                android:layout_gravity="center_vertical"
+                                android:orientation="vertical"
+                                android:layout_weight=".85"
+                                android:layout_width="0sp"
+                                android:layout_height="wrap_content">
+                                <Spinner
+                                    android:id="@+id/productCat"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+                                </Spinner>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_weight=".15"
+                                android:layout_width="0sp"
+                                android:padding="5sp"
+                                android:layout_height="wrap_content">
+                                <com.joanzapata.iconify.widget.IconButton
+                                    android:id="@+id/btnCreateCategory"
+                                    android:background="@color/colorAccent"
+                                    android:layout_centerInParent="true"
+                                    android:text="{fa-plus}"
+                                    android:textColor="@color/icons"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
+                        </LinearLayout>
 
                         <TextView
                             android:layout_marginLeft="10sp"
@@ -129,13 +159,43 @@
                             android:fontFamily="sans-serif-condensed"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
-                        <Spinner
+
+                        <LinearLayout
                             android:layout_marginTop="5sp"
                             android:layout_marginBottom="5sp"
-                            android:id="@+id/productLocation"
+                            android:orientation="horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
-                        </Spinner>
+                            <LinearLayout
+                                android:gravity="center_vertical"
+                                android:layout_gravity="center_vertical"
+                                android:orientation="vertical"
+                                android:layout_weight=".85"
+                                android:layout_width="0sp"
+                                android:layout_height="wrap_content">
+                                <Spinner
+                                    android:id="@+id/productLocation"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+                                </Spinner>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_weight=".15"
+                                android:layout_width="0sp"
+                                android:padding="5sp"
+                                android:layout_height="wrap_content">
+                                <com.joanzapata.iconify.widget.IconButton
+                                    android:id="@+id/btnCreateLocation"
+                                    android:background="@color/colorAccent"
+                                    android:layout_centerInParent="true"
+                                    android:text="{fa-plus}"
+                                    android:textColor="@color/icons"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                                </LinearLayout>
+                        </LinearLayout>
 
                         <LinearLayout
                             android:orientation="horizontal"

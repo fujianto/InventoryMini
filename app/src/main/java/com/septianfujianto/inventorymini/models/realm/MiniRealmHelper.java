@@ -211,15 +211,15 @@ public class MiniRealmHelper {
 
         for (Product item : results) {
             if (TextUtils.equals(column, "product_qty_label")) {
-                listLabel.add(item.getProduct_qty_label());
+                listLabel.add(item.getProduct_qty_label() != null ? item.getProduct_qty_label() : "");
             }
 
             if (TextUtils.equals(column, "product_brand")) {
-                listLabel.add(item.getProduct_brand());
+                listLabel.add(item.getProduct_brand() != null ? item.getProduct_brand() : "");
             }
 
             if (TextUtils.equals(column, "product_weight_label")) {
-                listLabel.add(item.getProduct_weight_label());
+                listLabel.add(item.getProduct_weight_label() != null ? item.getProduct_weight_label() : "");
             }
         }
 

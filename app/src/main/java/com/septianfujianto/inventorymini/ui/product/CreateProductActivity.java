@@ -2,23 +2,23 @@ package com.septianfujianto.inventorymini.ui.product;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.joanzapata.iconify.widget.IconButton;
 import com.mvc.imagepicker.ImagePicker;
 import com.septianfujianto.inventorymini.R;
 import com.septianfujianto.inventorymini.models.realm.Category;
@@ -71,6 +71,10 @@ public class CreateProductActivity extends AppCompatActivity implements ProductP
     InstantAutoComplete productWeightLabel;
     @BindView(R.id.productQtyWatch)
     EditText productQtyWatch;
+    @BindView(R.id.btnCreateCategory)
+    IconButton btnCreateCategory;
+    @BindView(R.id.btnCreateLocation)
+    IconButton btnCreateLocation;
 
     private List<Integer> listCatId;
     private List<String> listCatLabel;
@@ -99,7 +103,7 @@ public class CreateProductActivity extends AppCompatActivity implements ProductP
         activity = this;
         getSupportActionBar().setTitle(getString(R.string.bar_title_create_product));
         helper = new MiniRealmHelper(this);
-        ImagePicker.setMinQuality(200, 200);
+        ImagePicker.setMinQuality(400, 400);
         extras = getIntent().getExtras();
         ButterKnife.bind(this);
         productPresenter = new ProductPresenter(this, this);
@@ -112,7 +116,7 @@ public class CreateProductActivity extends AppCompatActivity implements ProductP
 
         if (extras != null) {
             productId = extras.getInt(getString(R.string.translate_false_productId));
-            getSupportActionBar().setTitle(getString(R.string.editing_product)+" #"+productId);
+            getSupportActionBar().setTitle(getString(R.string.editing_product) + " #" + productId);
             setupEditForm(productId);
         }
 
@@ -128,10 +132,70 @@ public class CreateProductActivity extends AppCompatActivity implements ProductP
             @Override
             public void onClick(View view) {
                 productPresenter.addNewProduct();
-                finish();
-                startActivity(new Intent(context, ListProductActivity.class));
             }
         });
+
+        btnCreateCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createSpinnerItem(Category.class);
+            }
+        });
+
+        btnCreateLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createSpinnerItem(Location.class);
+            }
+        });
+    }
+
+    private void createSpinnerItem(final Class obj) {
+        AlertDialog.Builder alert = new AlertDialog.Builder(context);
+
+        if (Category.class == obj) {
+            alert.setTitle(getResources().getString(R.string.bar_title_create_cat));
+        }
+
+        if (Location.class == obj) {
+            alert.setTitle(getResources().getString(R.string.bar_title_create_location));
+        }
+
+        final EditText input = new EditText(CreateProductActivity.this);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT);
+        input.setLayoutParams(lp);
+        alert.setView(input);
+
+        alert.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if (Category.class == obj) {
+                    Toast.makeText(context, getString(R.string.msg_category_created), Toast.LENGTH_SHORT).show();
+                    helper.insertCategory(helper.getNextKey(Category.class, "category_id"), input.getText().toString());
+                    listCatLabel.clear();
+                    catAdapter.notifyDataSetChanged();
+                    setUpSpinner();
+                }
+
+                if (Location.class == obj) {
+                    Toast.makeText(context, getString(R.string.msg_location_created), Toast.LENGTH_SHORT).show();
+                    helper.insertLocation(helper.getNextKey(Location.class, "location_id"), input.getText().toString());
+                    listLocationLabel.clear();
+                    locationAdapter.notifyDataSetChanged();
+                    setUpSpinnerLocation();
+                }
+            }
+        });
+
+        alert.setNeutralButton(getString(R.string.cancels), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        alert.show();
     }
 
     private void setupAutoTextview() {
@@ -221,7 +285,7 @@ public class CreateProductActivity extends AppCompatActivity implements ProductP
         Bitmap bitmap = ImagePicker.getImageFromResult(this, requestCode, resultCode, data);
 
         if (bitmap != null) {
-            Bitmap sBitmap = FileUtils.scaleDown(bitmap, 400, false);
+            Bitmap sBitmap = FileUtils.scaleDown(bitmap, 500, false);
             imagePath = FileUtils.getRealPathFromURI(context, FileUtils.getImageUri(context, sBitmap));
             productImage.setImageURI(Uri.parse(imagePath));
         }
@@ -278,7 +342,7 @@ public class CreateProductActivity extends AppCompatActivity implements ProductP
     }
 
     private Boolean isValidProductFormField() {
-        System.out.println("``` "+productQtyWatch.getText().length());
+        System.out.println("``` " + productQtyWatch.getText().length());
         if (Utils.isFormFilled(productName.getText().toString()) == false) {
             productName.setError(getString(R.string.msg_product_name_error));
             validatedMessage = getString(R.string.msg_product_name_error);
@@ -287,7 +351,7 @@ public class CreateProductActivity extends AppCompatActivity implements ProductP
             productQty.setError(getString(R.string.msg_product_qty_error));
             validatedMessage = getString(R.string.msg_product_qty_error);
             return false;
-        }  else if (productPrice.getText().toString().length() < 1) {
+        } else if (productPrice.getText().toString().length() < 1) {
             productPrice.setError(getString(R.string.msg_product_price_error));
             validatedMessage = getString(R.string.msg_product_price_error);
             return false;
@@ -363,7 +427,12 @@ public class CreateProductActivity extends AppCompatActivity implements ProductP
                 product.setBulk_price(Double.valueOf(productPriceBulk.getText().toString()));
             }
 
-            product.setDate_created(Utils.getTodayDate(""));
+            if (extras == null) {
+                product.setDate_created(Utils.getTodayDate(""));
+            } else {
+                product.setDate_created(helper.getProductById(productId).getDate_created());
+            }
+
             product.setDate_modified(Utils.getTodayDate(""));
 
             Toast.makeText(context, validatedMessage, Toast.LENGTH_SHORT).show();

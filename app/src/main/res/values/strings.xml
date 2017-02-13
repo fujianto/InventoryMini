@@ -1,14 +1,15 @@
 <resources>
     <string name="app_name">Inventory Mini</string>
-    <string name="title_activity_list_product">ListProductActivity</string>
+    <string name="title_activity_list_product">Produk Terbaru</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open">Buka navigation drawer</string>
+    <string name="navigation_drawer_close">Tutup navigation drawer</string>
 
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Pengaturan</string>
     <string name="yes">Ya</string>
     <string name="no">Tidak</string>
     <string name="ok">Oke</string>
+    <string name="cancels">Batal</string>
 
     <!-- Form Field -->
     <string name="product_name">Nama</string>
@@ -18,6 +19,8 @@
     <string name="product_brand">Merek</string>
     <string name="product_weight">Berat</string>
     <string name="product_location">Lokasi</string>
+    <string name="product_date_created">Tanggal dibuat</string>
+    <string name="product_date_modified">Tanggal diubah</string>
     <string name="create_category">Tambahkan</string>
     <string name="product_qty_wacth">Tambah pengingat saat jumlah produk dibawah</string>
     <string name="add_new">Tambahkan</string>
@@ -54,7 +57,6 @@
     <array name="qty_label">
         <item name="pcs" translatable="false">pcs</item>
         <item name="box" translatable="false">box</item>
-        <item name="bottle" translatable="false">bottle</item>
     </array>
 
     <array name="weight_label">
@@ -115,6 +117,7 @@
     <!-- Activity / Title -->
     <string name="bar_title_create_cat">Tambah Kategori</string>
     <string name="bar_title_create_product">Buat Produk</string>
+    <string name="bar_title_create_location">Buat Lokasi</string>
     <string name="bar_title_login">Login</string>
     <string name="bar_title_register_store">Daftar Toko</string>
     <string name="bar_title_register_user">Daftarkan User</string>
@@ -184,4 +187,79 @@
             <br />
         ]]>
     </string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+    <string name="pref_header_general">Umum</string>
+
+    <string name="pref_title_display_name">Nama pemilik</string>
+    <string name="pref_default_display_name">John Smith</string>
+
+    <string name="pref_title_owner_email">Email pemilik</string>
+    <string name="pref_default_owner_email">admin@inventorymini.com</string>
+
+    <string name="pref_title_store_name">Nama Toko</string>
+    <string name="pref_default_store_name">Kafra Shop</string>
+
+    <string name="pref_title_store_address">Alamat Toko</string>
+    <string name="pref_default_store_address">Jl. Toko no. 5</string>
+
+    <string name="pref_title_currency_symbol">Simbol mata uang</string>
+    <string-array name="pref_currency_symbol">
+        <item>Rp</item>
+        <item>$</item>
+        <item>€</item>
+        <item>£</item>
+        <item>¥</item>
+        <item>₱</item>
+    </string-array>
+
+    <string name="pref_title_decimal_sep">Pemisah desimal</string>
+    <string name="pref_title_grouping_sep">Pemisah ribuan</string>
+
+    <!-- Example settings for Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; sinkronisasi</string>
+
+    <string name="pref_title_sync_frequency">Frekuensi sinkronisasi</string>
+    <string-array name="pref_sync_frequency_titles">
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>3 hours</item>
+        <item>6 hours</item>
+        <item>12 hours</item>
+        <item>24 hours</item>
+        <item>Never</item>
+    </string-array>
+
+    <string-array name="pref_sync_frequency_values">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>180</item>
+        <item>360</item>
+        <item>720</item>
+        <item>1440</item>
+        <item>-1</item>
+    </string-array>
+
+    <string-array name="list_preference_entries">
+        <item>Entry 1</item>
+        <item>Entry 2</item>
+        <item>Entry 3</item>
+    </string-array>
+
+    <string-array name="list_preference_entry_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="multi_select_list_preference_default_value" />
+
+    <!-- Example settings for Notifications -->
+    <string name="pref_header_notifications">Notifikasi</string>
+    <string name="pref_title_low_stock_notifications">Notifikasi stok habis</string>
 </resources>

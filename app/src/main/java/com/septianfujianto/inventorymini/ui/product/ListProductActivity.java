@@ -38,6 +38,7 @@ import com.septianfujianto.inventorymini.models.realm.Product;
 import com.septianfujianto.inventorymini.ui.backup.BackupActivity;
 import com.septianfujianto.inventorymini.ui.category.CreateCategoryActivity;
 import com.septianfujianto.inventorymini.ui.location.CreateLocationActivity;
+import com.septianfujianto.inventorymini.ui.settings.SettingsActivity;
 import com.septianfujianto.inventorymini.utils.Utils;
 
 import java.util.ArrayList;
@@ -107,6 +108,9 @@ public class ListProductActivity extends AppCompatActivity
                 .colorRes(R.color.icons).actionBarSize());
 
         menu.findItem(R.id.nav_about).setIcon(new IconDrawable(context, FontAwesomeIcons.fa_info)
+                .colorRes(R.color.icons).actionBarSize());
+
+        menu.findItem(R.id.nav_settings).setIcon(new IconDrawable(context, FontAwesomeIcons.fa_cog)
                 .colorRes(R.color.icons).actionBarSize());
     }
 
@@ -272,6 +276,8 @@ public class ListProductActivity extends AppCompatActivity
             startActivity(new Intent(App.getContext(), CreateLocationActivity.class));
         } else if (id == R.id.nav_about) {
             setupAboutDialog();
+        } else if (id == R.id.nav_settings) {
+            startActivity(new Intent(App.getContext(), SettingsActivity.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

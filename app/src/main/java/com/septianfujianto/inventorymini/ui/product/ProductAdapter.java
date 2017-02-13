@@ -10,8 +10,10 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.septianfujianto.inventorymini.App;
 import com.septianfujianto.inventorymini.R;
 import com.septianfujianto.inventorymini.models.realm.Product;
+import com.septianfujianto.inventorymini.utils.SharedPref;
 import com.septianfujianto.inventorymini.utils.SquaredImageView;
 import com.septianfujianto.inventorymini.utils.Utils;
 
@@ -45,15 +47,18 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductH
         Double dbBulkPrice = products.get(pos).getBulk_price();
         int dbQty = products.get(pos).getProduct_qty();
 
-        String price = dbPrice != null ? Utils.formatCurrency(
-                dbPrice, context.getString(R.string.translate_false_currency_symbol)+" ",
-                context.getString(R.string.translate_false_currency_grouping_sep).charAt(0),
-                context.getString(R.string.translate_false_currency_decimal_sep).charAt(0)) : "";
+        String currency_symbol = SharedPref.getString("currency_symbol") != null ?
+                SharedPref.getString("currency_symbol") : App.getContext().getString(R.string.translate_false_currency_symbol);
+        String grouping_separator = SharedPref.getString("grouping_separator") != null ?
+                SharedPref.getString("grouping_separator") : App.getContext().getString(R.string.translate_false_currency_grouping_sep);
+        String decimal_separator = SharedPref.getString("decimal_separator") != null ?
+                SharedPref.getString("decimal_separator") : App.getContext().getString(R.string.translate_false_currency_decimal_sep);
 
-        String bulkPrice = dbBulkPrice != null ? Utils.formatCurrency(
-                dbBulkPrice, context.getString(R.string.translate_false_currency_symbol)+" ",
-                context.getString(R.string.translate_false_currency_grouping_sep).charAt(0),
-                context.getString(R.string.translate_false_currency_decimal_sep).charAt(0)) : "";
+        String price = dbPrice != null ? Utils.formatCurrency(
+                dbPrice, currency_symbol+" ",
+                grouping_separator.charAt(0),
+                decimal_separator.charAt(0)) : "";
+
 
         String qty = String.valueOf(dbQty) != null ? String.valueOf(dbQty) : "0";
 

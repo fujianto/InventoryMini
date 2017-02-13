@@ -106,8 +106,36 @@
                             android:layout_height="wrap_content" />
 
                         <TextView
+                            android:layout_marginBottom="10sp"
                             android:textColor="@color/icons"
                             android:text="@string/product_location"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_marginBottom="10sp"
+                            android:textColor="@color/icons"
+                            android:text="@string/product_brand"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_marginBottom="10sp"
+                            android:textColor="@color/icons"
+                            android:text="@string/product_weight"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_marginBottom="10sp"
+                            android:textColor="@color/icons"
+                            android:text="@string/product_date_created"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:textColor="@color/icons"
+                            android:text="@string/product_date_modified"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
                     </LinearLayout>
@@ -148,7 +176,35 @@
                             android:layout_height="wrap_content" />
 
                         <TextView
+                            android:layout_marginBottom="10sp"
                             android:id="@+id/productTextLocation"
+                            android:text=""
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_marginBottom="10sp"
+                            android:id="@+id/productTextBrand"
+                            android:text=""
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_marginBottom="10sp"
+                            android:id="@+id/productTextWeight"
+                            android:text=""
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_marginBottom="10sp"
+                            android:id="@+id/productTextDateCreated"
+                            android:text=""
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:id="@+id/productTextDateModified"
                             android:text=""
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
