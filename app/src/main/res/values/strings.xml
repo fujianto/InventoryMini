@@ -202,7 +202,7 @@
             <br />
         ]]>
     </string>
-    <string name="title_activity_settings">Settings</string>
+    <string name="title_activity_settings">Pengaturan</string>
 
     <!-- Strings related to Settings -->
 
@@ -216,7 +216,7 @@
     <string name="pref_default_owner_email" translatable="false">admin@inventorymini.com</string>
 
     <string name="pref_title_store_name">Nama Toko</string>
-    <string name="pref_default_store_name">Mini Shop</string>
+    <string name="pref_default_store_name" translatable="false">Mini Shop</string>
 
     <string name="pref_title_store_address">Alamat Toko</string>
     <string name="pref_default_store_address" translatable="false">Jl. Toko no. 5</string>
