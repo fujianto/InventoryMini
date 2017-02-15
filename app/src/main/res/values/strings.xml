@@ -16,6 +16,7 @@
     <string name="product_image">Gambar</string>
     <string name="product_quantity">Jumlah</string>
     <string name="product_category">Kategori</string>
+    <string name="product_summary">Ringkasan</string>
     <string name="product_brand">Merek</string>
     <string name="product_weight">Berat</string>
     <string name="product_location">Lokasi</string>
@@ -44,6 +45,12 @@
     <string name="other_location">Lainnya</string>
     <string name="backup_restore">Backup / Restore</string>
     <string name="about_us">Tentang Kami</string>
+    <string name="product_variation">Variasi Produk</string>
+    <string name="total_quantity">Kuantitas Total</string>
+    <string name="total_amount">Jumlah Total</string>
+    <string name="most_used_brand">Merek Terpopuler</string>
+    <string name="most_used_category">Kategori Terpopuler</string>
+    <string name="most_used_location">Lokasi Terpopuler</string>
 
     <string name="sort_date_desc">Produk terbaru</string>
     <string name="sort_date_asc">Produk terlama</string>
@@ -66,7 +73,7 @@
     </array>
 
     <array name="brand_content">
-        <item name="other">Lainnya</item>
+        <item name="other">@string/other_location</item>
     </array>
 
     <!-- Form Message -->
@@ -90,6 +97,8 @@
     <string name="translate_false_table_location" translatable="false">Location</string>
 
     <!-- Description -->
+    <string name="low_stock_desc">Stok produk hampir habis. Segera cek dan perbarui stok produk berikut.</string>
+    <string name="check_low_stock">Cek produk</string>
     <string name="desc_backup">Gunakan tombol Backup data ke File untuk mengimpor seluruh database ke format JSON,
         yang nantinya bisa diubah diluar aplikasi. Tombol Backup Database digunakan untuk melaukan Backup lokal.
         Tombol Hapus seluruh Database akan menghapus seluruh data Barang dari Aplikasi.</string>
@@ -122,6 +131,8 @@
     <string name="bar_title_register_store">Daftar Toko</string>
     <string name="bar_title_register_user">Daftarkan User</string>
     <string name="bar_title_latest_product">Produk Terbaru</string>
+    <string name="low_stock_title">Jumlah stok produk rendah</string>
+    <string name="store_overview_title">Ringkasan toko</string>
 
     <!-- Store Settings -->
     <string name="translate_false_currency_symbol" translatable="false">Rp</string>
@@ -185,6 +196,10 @@
             <h3>MaterialFilePicker</h3>
             <p>Licensed under Apache Software License, Version 2.0 by nbsp team</p>
             <br />
+
+            <h3>Android Job</h3>
+            <p>Licensed under Apache Software License, Version 2.0 by Evernote</p>
+            <br />
         ]]>
     </string>
     <string name="title_activity_settings">Settings</string>
@@ -195,16 +210,16 @@
     <string name="pref_header_general">Umum</string>
 
     <string name="pref_title_display_name">Nama pemilik</string>
-    <string name="pref_default_display_name">John Smith</string>
+    <string name="pref_default_display_name" translatable="false">John Smith</string>
 
     <string name="pref_title_owner_email">Email pemilik</string>
-    <string name="pref_default_owner_email">admin@inventorymini.com</string>
+    <string name="pref_default_owner_email" translatable="false">admin@inventorymini.com</string>
 
     <string name="pref_title_store_name">Nama Toko</string>
-    <string name="pref_default_store_name">Kafra Shop</string>
+    <string name="pref_default_store_name">Mini Shop</string>
 
     <string name="pref_title_store_address">Alamat Toko</string>
-    <string name="pref_default_store_address">Jl. Toko no. 5</string>
+    <string name="pref_default_store_address" translatable="false">Jl. Toko no. 5</string>
 
     <string name="pref_title_currency_symbol">Simbol mata uang</string>
     <string-array name="pref_currency_symbol">
@@ -220,21 +235,31 @@
     <string name="pref_title_grouping_sep">Pemisah ribuan</string>
 
     <!-- Example settings for Data & Sync -->
-    <string name="pref_header_data_sync">Data &amp; sinkronisasi</string>
+    <string name="pref_header_data_sync">Data &amp; notifikasi</string>
 
-    <string name="pref_title_sync_frequency">Frekuensi sinkronisasi</string>
+    <string name="pref_title_sync_frequency">Frekuensi notifikasi</string>
+    <string name="one_minute">1 menit</string>
+    <string name="fivteen_minutes">15 menit</string>
+    <string name="thirty_minutes">30 menit</string>
+    <string name="one_hour">1 jam</string>
+    <string name="three_hour">3 jam</string>
+    <string name="six_hour">6 jam</string>
+    <string name="twelve_hour">12 jam</string>
+    <string name="twentyfour_hour">24 jam</string>
+
     <string-array name="pref_sync_frequency_titles">
-        <item>15 minutes</item>
-        <item>30 minutes</item>
-        <item>1 hour</item>
-        <item>3 hours</item>
-        <item>6 hours</item>
-        <item>12 hours</item>
-        <item>24 hours</item>
-        <item>Never</item>
+        <item>@string/one_minute</item>
+        <item>@string/fivteen_minutes</item>
+        <item>@string/thirty_minutes</item>
+        <item>@string/one_hour</item>
+        <item>@string/three_hour</item>
+        <item>@string/six_hour</item>
+        <item>@string/twelve_hour</item>
+        <item>@string/twentyfour_hour</item>
     </string-array>
 
     <string-array name="pref_sync_frequency_values">
+        <item>1</item>
         <item>15</item>
         <item>30</item>
         <item>60</item>
@@ -242,22 +267,7 @@
         <item>360</item>
         <item>720</item>
         <item>1440</item>
-        <item>-1</item>
     </string-array>
-
-    <string-array name="list_preference_entries">
-        <item>Entry 1</item>
-        <item>Entry 2</item>
-        <item>Entry 3</item>
-    </string-array>
-
-    <string-array name="list_preference_entry_values">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-    </string-array>
-
-    <string-array name="multi_select_list_preference_default_value" />
 
     <!-- Example settings for Notifications -->
     <string name="pref_header_notifications">Notifikasi</string>

@@ -3,6 +3,7 @@ package com.septianfujianto.inventorymini.ui.location;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -101,10 +102,11 @@ public class CreateLocationActivity extends AppCompatActivity implements Locatio
     private void setupRecyclerView() {
         locations = new ArrayList<>();
         adapter = new LocationAdapter(this, this, locations);
-
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
+        mRecyclerView.setLayoutManager(linearLayoutManager);
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(mRecyclerView.getContext(),
+                linearLayoutManager.getOrientation()));
         RealmResults<Location> results = helper.getLocations();
         locations.addAll(results);
 

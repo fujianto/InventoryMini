@@ -62,7 +62,17 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.septianfujianto.inventorymini.ui.product.ListProductActivity" />
         </activity>
-        <activity android:name=".ui.status.StatusActivity"></activity>
+        <activity android:name=".ui.status.StatusActivity" android:parentActivityName=".ui.product.ListProductActivity">
+
+        </activity>
+
+        <receiver
+            android:name=".process.StockReminderJobCreator$AddReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.evernote.android.job.ADD_JOB_CREATOR"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

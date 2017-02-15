@@ -1,10 +1,16 @@
 package com.septianfujianto.inventorymini.ui.product;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.speech.RecognizerIntent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -14,7 +20,9 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.format.DateUtils;
 import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -28,6 +36,7 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.evernote.android.job.JobManager;
 import com.joanzapata.iconify.IconDrawable;
 import com.joanzapata.iconify.fonts.FontAwesomeIcons;
 import com.septianfujianto.inventorymini.App;
@@ -35,19 +44,27 @@ import com.septianfujianto.inventorymini.R;
 import com.septianfujianto.inventorymini.models.ProductFilter;
 import com.septianfujianto.inventorymini.models.realm.MiniRealmHelper;
 import com.septianfujianto.inventorymini.models.realm.Product;
+import com.septianfujianto.inventorymini.process.PushNotif;
+import com.septianfujianto.inventorymini.process.StockReminderJob;
 import com.septianfujianto.inventorymini.ui.backup.BackupActivity;
 import com.septianfujianto.inventorymini.ui.category.CreateCategoryActivity;
 import com.septianfujianto.inventorymini.ui.location.CreateLocationActivity;
 import com.septianfujianto.inventorymini.ui.settings.SettingsActivity;
+import com.septianfujianto.inventorymini.ui.status.StatusActivity;
+import com.septianfujianto.inventorymini.utils.SharedPref;
 import com.septianfujianto.inventorymini.utils.Utils;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.realm.RealmResults;
 import io.realm.Sort;
+
+import static android.webkit.WebSettings.PluginState.ON;
 
 public class ListProductActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, ProductPresenter.ProductPresenterListener {
@@ -61,8 +78,12 @@ public class ListProductActivity extends AppCompatActivity
     private BottomSheetDialogFragment sortDialogFragment;
     private BottomSheetDialogFragment filterDialogFragment;
     private View dialogView;
+    private JobManager mJobManager;
+    private TextView drawerMenuTitle;
+
     @BindView(R.id.bottom_navigation) BottomNavigationView bottomNavigationView;
     @BindView(R.id.searcbox) EditText searchbox;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +95,8 @@ public class ListProductActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         ButterKnife.bind(this);
 
+        mJobManager = JobManager.instance();
+
         context = this;
         helper = new MiniRealmHelper(this);
         productPresenter = new ProductPresenter(this, this);
@@ -84,6 +107,24 @@ public class ListProductActivity extends AppCompatActivity
         setupSearchbox();
         setupProductRecyclerview(savedInstanceState);
         setupBottombar();
+
+        if (savedInstanceState == null) {
+            PushNotif notif = new PushNotif(context);
+            notif.showStockAlertNotif();
+            initPushNotifStockReminder();
+        }
+
+    }
+
+    private void initPushNotifStockReminder() {
+        Boolean isStockNotifOn = SharedPref.getBol("notifications_low_stock");
+
+        if (isStockNotifOn == true && helper.getLowStocksProducts().size() > 0) {
+            StockReminderJob stockReminderJob = new StockReminderJob();
+            stockReminderJob.schedulePeriodicJob();
+        } else if (helper.getLowStocksProducts().size() <= 0) {
+            mJobManager.cancelAll();
+        }
     }
 
     private void setupDrawerNavigation() {
@@ -93,10 +134,17 @@ public class ListProductActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
+        String titleDrawer = SharedPref.getString("store_name") != null || SharedPref.getString("store_name") != "" ?
+                SharedPref.getString("store_name") : getString(R.string.pref_default_store_name);
+
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View header = navigationView.getHeaderView(0);
 
         Menu menu = navigationView.getMenu();
+        drawerMenuTitle = (TextView) header.findViewById(R.id.drawerMenuTitle);
+        drawerMenuTitle.setText(titleDrawer);
 
         menu.findItem(R.id.nav_category).setIcon(new IconDrawable(context, FontAwesomeIcons.fa_tag)
             .colorRes(R.color.icons).actionBarSize());
@@ -111,6 +159,9 @@ public class ListProductActivity extends AppCompatActivity
                 .colorRes(R.color.icons).actionBarSize());
 
         menu.findItem(R.id.nav_settings).setIcon(new IconDrawable(context, FontAwesomeIcons.fa_cog)
+                .colorRes(R.color.icons).actionBarSize());
+
+        menu.findItem(R.id.nav_summary).setIcon(new IconDrawable(context, FontAwesomeIcons.fa_line_chart)
                 .colorRes(R.color.icons).actionBarSize());
     }
 
@@ -278,6 +329,8 @@ public class ListProductActivity extends AppCompatActivity
             setupAboutDialog();
         } else if (id == R.id.nav_settings) {
             startActivity(new Intent(App.getContext(), SettingsActivity.class));
+        } else if (id == R.id.nav_summary) {
+            startActivity(new Intent(App.getContext(), StatusActivity.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

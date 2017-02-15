@@ -39,6 +39,25 @@ public class SharedPref {
                 .apply();
     }
 
+    public static void saveLong(String key, Long value) {
+        Log.d(TAG, "saveLong: " + value);
+        getPref().edit()
+                .putLong(key, value)
+                .apply();
+    }
+
+    public static Long getLong(String key) {
+        Log.d(TAG, "getLong: " + getPref().getLong(key, 0L));
+        return getPref().getLong(key, 0L);
+    }
+
+
+    public static void deleteLong(String key) {
+        getPref().edit()
+                .remove(key)
+                .apply();
+    }
+
     public static void saveInt(String key, int value) {
         Log.d(TAG, "saveInt: " + value);
         getPref().edit()

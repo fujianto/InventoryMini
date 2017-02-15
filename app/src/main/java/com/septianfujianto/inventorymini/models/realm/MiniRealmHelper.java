@@ -2,15 +2,10 @@ package com.septianfujianto.inventorymini.models.realm;
 
 import android.content.Context;
 import android.text.TextUtils;
-import android.widget.Toast;
 
 import com.septianfujianto.inventorymini.models.ProductFilter;
+import com.septianfujianto.inventorymini.utils.Utils;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -24,9 +19,6 @@ import io.realm.RealmObject;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
 import io.realm.Sort;
-
-import static android.R.attr.category;
-import static com.septianfujianto.inventorymini.R.string.product_brand;
 
 /**
  * Created by Septian A. Fujianto on 1/30/2017.
@@ -110,6 +102,19 @@ public class MiniRealmHelper {
         return results;
     }
 
+    public List<Product> getLowStocksProducts() {
+        RealmResults<Product> results = realm.where(Product.class).findAllSorted("date_created", Sort.DESCENDING);
+        List<Product> lowStocks = new ArrayList<>();
+
+        for (Product item : results) {
+            if (item.getProduct_qty() < item.getProduct_qty_watch()) {
+                lowStocks.add(item);
+            }
+        }
+
+        return lowStocks;
+    }
+
     public Product getProductById(int id) {
         Product results = realm.where(Product.class).equalTo("product_id", id).findFirst();
 
@@ -163,6 +168,53 @@ public class MiniRealmHelper {
         }
 
         return query.findAll();
+    }
+
+    public List<String> getProductColumnList(String columnName) {
+        List<String> list = new ArrayList<>();
+
+        for (Product product : this.getProducts()) {
+            if (columnName == "product_brand") {
+                list.add(product.getProduct_brand());
+            }
+
+            if (columnName == "category_id") {
+                String catName = this.getCategoryById(Integer.valueOf(product.getCategory_id())).getCategory_name();
+                list.add(catName);
+            }
+
+            if (columnName == "location_id") {
+                String locName = this.getLocationById(Integer.valueOf(product.getLocation_id())).getLocation_name();
+                list.add(locName);
+            }
+        }
+
+        return list;
+    }
+
+    public Double getTotalAmount(List<Integer> qty, List<Double> price) {
+        ArrayList<Double> subtotal = new ArrayList<>();
+
+        if (qty.size() == price.size()) {
+            for (int i = 0; i < qty.size(); i++) {
+                subtotal.add(Double.valueOf(qty.get(i) * price.get(i)));
+            }
+        }
+
+        return Utils.sumList(subtotal);
+    }
+
+    public Number getSumColumn(Class obj, String columnName) {
+        try {
+            RealmResults<Product> results = realm.where(obj).findAll();
+            Number total = results.sum(columnName);
+
+            return total;
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            return 0;
+        }
     }
 
     public RealmResults<Location> getLocations() {

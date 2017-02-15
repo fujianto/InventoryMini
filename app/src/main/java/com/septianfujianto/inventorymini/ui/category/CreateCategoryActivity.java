@@ -2,6 +2,7 @@ package com.septianfujianto.inventorymini.ui.category;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -61,10 +62,11 @@ public class CreateCategoryActivity extends AppCompatActivity implements Categor
     private void setupRecyclerView() {
         categories = new ArrayList<>();
         adapter = new CategoryAdapter(this, this, categories);
-
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerViewCat.setHasFixedSize(true);
-        recyclerViewCat.setLayoutManager(new LinearLayoutManager(this));
-
+        recyclerViewCat.setLayoutManager(linearLayoutManager);
+        recyclerViewCat.addItemDecoration(new DividerItemDecoration(recyclerViewCat.getContext(),
+                linearLayoutManager.getOrientation()));
         loadCategories();
     }
 

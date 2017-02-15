@@ -19,8 +19,11 @@ import java.io.ByteArrayOutputStream;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
+import java.util.Collections;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -53,6 +56,24 @@ public class Utils {
             sum = sum + i;
 
         return sum;
+    }
+
+    public static String getMostFrequentItem(List<String> list) {
+        int max = 0;
+        int curr = 0;
+        String mostFrequentItem = null;
+        Set<String> unique = new HashSet<>(list);
+
+        for (String key : unique) {
+            curr = Collections.frequency(list, key);
+
+            if(max < curr){
+                max = curr;
+                mostFrequentItem = key;
+            }
+        }
+
+        return mostFrequentItem;
     }
 
     // validating email id

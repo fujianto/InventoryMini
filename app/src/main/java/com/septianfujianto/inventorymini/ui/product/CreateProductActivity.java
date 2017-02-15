@@ -265,6 +265,9 @@ public class CreateProductActivity extends AppCompatActivity implements ProductP
     }
 
     public void resetFormField() {
+        if (extras != null)
+            extras = null;
+
         spinnerCat.setSelection(0);
         spinnerLocation.setSelection(0);
         productImage.setImageURI(null);
