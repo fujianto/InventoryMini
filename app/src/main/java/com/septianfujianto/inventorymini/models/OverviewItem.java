@@ -1,7 +1,5 @@
 package com.septianfujianto.inventorymini.models;
 
-import com.septianfujianto.inventorymini.models.realm.RecyclerviewItem;
-
 /**
  * Created by Septian A. Fujianto on 2/14/2017.
  */

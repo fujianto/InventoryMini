@@ -140,4 +140,6 @@
     <string name="twelve_hour">12 hours</string>
     <string name="twentyfour_hour">24 hours</string>
     <string name="low_stock_desc">Some products have low stock, please check  your product stocks.</string>
+    <string name="reset">Reset</string>
+    <string name="finish">Selesai</string>
 </resources>

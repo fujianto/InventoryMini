@@ -1,4 +1,4 @@
-package com.septianfujianto.inventorymini.models.realm;
+package com.septianfujianto.inventorymini.models;
 
 /**
  * Created by Septian A. Fujianto on 2/14/2017.

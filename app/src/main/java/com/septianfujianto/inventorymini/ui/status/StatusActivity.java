@@ -9,28 +9,15 @@ import android.support.v7.widget.RecyclerView;
 import com.septianfujianto.inventorymini.App;
 import com.septianfujianto.inventorymini.R;
 import com.septianfujianto.inventorymini.models.OverviewItem;
-import com.septianfujianto.inventorymini.models.realm.Category;
 import com.septianfujianto.inventorymini.models.realm.MiniRealmHelper;
 import com.septianfujianto.inventorymini.models.realm.Product;
-import com.septianfujianto.inventorymini.models.realm.RecyclerviewItem;
+import com.septianfujianto.inventorymini.models.RecyclerviewItem;
 import com.septianfujianto.inventorymini.ui.product.ProductAdapter;
-import com.septianfujianto.inventorymini.ui.product.ProductPresenter;
 import com.septianfujianto.inventorymini.utils.SharedPref;
 import com.septianfujianto.inventorymini.utils.Utils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.realm.RealmResults;
-
-import static android.R.id.list;
 
 public class StatusActivity extends AppCompatActivity {
     private Context context;

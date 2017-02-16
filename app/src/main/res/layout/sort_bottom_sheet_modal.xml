@@ -98,7 +98,7 @@
             <Button
                 android:id="@+id/btnReset"
                 style="@style/Widget.AppCompat.Button.Borderless"
-                android:text="Reset"
+                android:text="@string/reset"
                 android:layout_weight=".50"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content" />
@@ -106,7 +106,7 @@
             <Button
                 android:id="@+id/btnSort"
                 style="@style/Widget.AppCompat.Button.Colored"
-                android:text="Selesai"
+                android:text="@string/finish"
                 android:layout_weight=".50"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content" />

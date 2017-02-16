@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.septianfujianto.inventorymini.R;
-import com.septianfujianto.inventorymini.models.realm.RecyclerviewItem;
+import com.septianfujianto.inventorymini.models.RecyclerviewItem;
 
 import java.util.List;
 

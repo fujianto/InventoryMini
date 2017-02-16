@@ -345,7 +345,6 @@ public class CreateProductActivity extends AppCompatActivity implements ProductP
     }
 
     private Boolean isValidProductFormField() {
-        System.out.println("``` " + productQtyWatch.getText().length());
         if (Utils.isFormFilled(productName.getText().toString()) == false) {
             productName.setError(getString(R.string.msg_product_name_error));
             validatedMessage = getString(R.string.msg_product_name_error);

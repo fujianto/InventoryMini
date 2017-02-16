@@ -222,7 +222,7 @@
     <string name="pref_default_store_address" translatable="false">Jl. Toko no. 5</string>
 
     <string name="pref_title_currency_symbol">Simbol mata uang</string>
-    <string-array name="pref_currency_symbol">
+    <string-array name="pref_currency_symbol" translatable="false">
         <item>Rp</item>
         <item>$</item>
         <item>€</item>
@@ -258,7 +258,7 @@
         <item>@string/twentyfour_hour</item>
     </string-array>
 
-    <string-array name="pref_sync_frequency_values">
+    <string-array name="pref_sync_frequency_values" translatable="false">
         <item>1</item>
         <item>15</item>
         <item>30</item>
@@ -272,4 +272,6 @@
     <!-- Example settings for Notifications -->
     <string name="pref_header_notifications">Notifikasi</string>
     <string name="pref_title_low_stock_notifications">Notifikasi stok habis</string>
+    <string name="reset">Reset</string>
+    <string name="finish">Selesai</string>
 </resources>
