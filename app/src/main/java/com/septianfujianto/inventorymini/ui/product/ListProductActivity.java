@@ -33,8 +33,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.evernote.android.job.JobManager;
 import com.joanzapata.iconify.IconDrawable;
@@ -103,10 +105,17 @@ public class ListProductActivity extends AppCompatActivity
         sortDialogFragment = new SortDialogFragment();
         filterDialogFragment = new filterDialogFragment();
 
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
         setupDrawerNavigation();
         setupSearchbox();
         setupProductRecyclerview(savedInstanceState);
         setupBottombar();
+
+       /* System.out.println("================");
+        System.out.println(SharedPref.getBol("notifications_low_stock"));
+        System.out.println(helper.getLowStocksProducts().size());
+        System.out.println(SharedPref.getBol("notifications_low_stock") && helper.getLowStocksProducts().size() > 0);*/
 
         if (savedInstanceState == null) {
             PushNotif notif = new PushNotif(context);
@@ -275,18 +284,32 @@ public class ListProductActivity extends AppCompatActivity
     }
 
     public void sortProduct(String fieldName, Sort sort) {
-        //Toast.makeText(context, "SORT BY: "+fieldName+" "+sort, Toast.LENGTH_SHORT).show();
-        RealmResults<Product> results  = helper.sortProduct(fieldName, sort);
-        productPresenter.recyclerviewUpdated();
-        products.addAll(results);
-        sortDialogFragment.dismiss();
+        try {
+            //Toast.makeText(context, "SORT BY: "+fieldName+" "+sort, Toast.LENGTH_SHORT).show();
+            RealmResults<Product> results  = helper.sortProduct(fieldName, sort);
+
+            if (results != null) {
+                productPresenter.recyclerviewUpdated();
+                products.addAll(results);
+                sortDialogFragment.dismiss();
+            }
+        } catch (Exception e) {
+            Toast.makeText(context, e.getMessage() != null ? e.getMessage() : "Something wrong with sort", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void filterProduct(ProductFilter filter) {
-        RealmResults<Product> results  = helper.filterProducts(filter);
-        productPresenter.recyclerviewUpdated();
-        products.addAll(results);
-        filterDialogFragment.dismiss();
+        try {
+            RealmResults<Product> results = helper.filterProducts(filter);
+
+            if (results != null) {
+                productPresenter.recyclerviewUpdated();
+                products.addAll(results);
+                filterDialogFragment.dismiss();
+            }
+        } catch (Exception e) {
+            Toast.makeText(context, e.getMessage() != null ? e.getMessage() : "Something wrong with filter", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

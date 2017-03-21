@@ -12,13 +12,67 @@ public class ProductPrimitive {
     private String product_image;
     private int product_qty;
     private String category_id;
+    private int location_id;
     private Double price;
     private Double sale_price;
     private Double bulk_price;
     private String date_created;
     private String date_modified;
+    private String product_brand;
+    private String product_qty_label;
+    private int product_weight;
+    private String product_weight_label;
+    private int product_qty_watch;
 
     public ProductPrimitive() {}
+
+    public int getLocation_id() {
+        return location_id;
+    }
+
+    public String getProduct_qty_label() {
+        return product_qty_label;
+    }
+
+    public void setProduct_qty_label(String product_qty_label) {
+        this.product_qty_label = product_qty_label;
+    }
+
+    public int getProduct_weight() {
+        return product_weight;
+    }
+
+    public void setProduct_weight(int product_weight) {
+        this.product_weight = product_weight;
+    }
+
+    public String getProduct_weight_label() {
+        return product_weight_label;
+    }
+
+    public void setProduct_weight_label(String product_weight_label) {
+        this.product_weight_label = product_weight_label;
+    }
+
+    public int getProduct_qty_watch() {
+        return product_qty_watch;
+    }
+
+    public void setProduct_qty_watch(int product_qty_watch) {
+        this.product_qty_watch = product_qty_watch;
+    }
+
+    public void setLocation_id(int location_id) {
+        this.location_id = location_id;
+    }
+
+    public String getProduct_brand() {
+        return product_brand;
+    }
+
+    public void setProduct_brand(String product_brand) {
+        this.product_brand = product_brand;
+    }
 
     public int getProduct_id() {
         return product_id;

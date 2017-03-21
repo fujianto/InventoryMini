@@ -10,6 +10,7 @@ import android.support.design.widget.CoordinatorLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -88,7 +89,7 @@ public class filterDialogFragment extends BottomSheetDialogFragment {
 
         ArrayAdapter<String> brandAdapter = new ArrayAdapter<>
                 (getActivity(), android.R.layout.simple_list_item_1, brandContentLbl);
-        productBrand.setText(brandContentLbl.get(0));
+        //productBrand.setText(brandContentLbl.get(0));
         productBrand.setAdapter(brandAdapter);
     }
 

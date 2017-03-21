@@ -248,7 +248,6 @@
     <string name="twentyfour_hour">24 jam</string>
 
     <string-array name="pref_sync_frequency_titles">
-        <item>@string/one_minute</item>
         <item>@string/fivteen_minutes</item>
         <item>@string/thirty_minutes</item>
         <item>@string/one_hour</item>
@@ -259,7 +258,6 @@
     </string-array>
 
     <string-array name="pref_sync_frequency_values" translatable="false">
-        <item>1</item>
         <item>15</item>
         <item>30</item>
         <item>60</item>

@@ -8,6 +8,8 @@
     android:padding="10sp"
     app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
     <LinearLayout
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

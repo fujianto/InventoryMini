@@ -68,11 +68,17 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductH
         if (products.get(pos).getProduct_image() != null) {
             Uri uriImage = Uri.parse(products.get(pos).getProduct_image());
             holder.featuredImage.setImageURI(uriImage);
+        } else {
+            holder.featuredImage.setImageResource(R.drawable.no_image);
         }
+
+        String qtyLabel = products.get(pos).getProduct_qty_label() == null ? "pcs" :
+                products.get(pos).getProduct_qty_label();
 
         holder.productTitle.setText(dbTitle);
         holder.productPrice.setText(price);
-        holder.productQty.setText(qty+" "+products.get(pos).getProduct_qty_label());
+        holder.productBrand.setText(products.get(pos).getProduct_brand());
+        holder.productQty.setText(qty+" "+qtyLabel);
 
         holder.productWrapper.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,7 +97,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductH
 
     public class ProductHolder extends RecyclerView.ViewHolder {
         private SquaredImageView featuredImage;
-        private TextView productTitle, productPrice, productQty;
+        private TextView productTitle, productPrice, productQty, productBrand;
         private LinearLayout productWrapper;
 
         public ProductHolder(View itemView) {
@@ -99,6 +105,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductH
 
             productWrapper = (LinearLayout) itemView.findViewById(R.id.productWrapper);
             featuredImage = (SquaredImageView) itemView.findViewById(R.id.featuredImage);
+            productBrand = (TextView) itemView.findViewById(R.id.productBrand);
             productTitle = (TextView) itemView.findViewById(R.id.productTitle);
             productPrice = (TextView) itemView.findViewById(R.id.productPrice);
             productQty = (TextView) itemView.findViewById(R.id.productQty);

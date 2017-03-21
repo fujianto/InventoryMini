@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.septianfujianto.inventorymini.App;
 import com.septianfujianto.inventorymini.R;
 import com.septianfujianto.inventorymini.models.realm.Category;
 import com.septianfujianto.inventorymini.models.realm.MiniRealmHelper;
@@ -51,6 +52,7 @@ public class CreateCategoryActivity extends AppCompatActivity implements Categor
             public void onClick(View view) {
                 if (editing) {
                     updateCategory(catId, catLabel);
+                    editing = false;
                 } else {
                     createCategory();
                 }
@@ -109,11 +111,17 @@ public class CreateCategoryActivity extends AppCompatActivity implements Categor
 
     @Override
     public void onCategoryDelete(int pos) {
-        recyclerViewCat.removeViewAt(pos);
-        categories.remove(pos);
-        adapter.notifyItemRemoved(pos);
-        adapter.notifyItemRangeChanged(pos, categories.size());
-        adapter.notifyDataSetChanged();
+        try {
+            if (pos > 0) {
+                recyclerViewCat.removeViewAt(pos);
+                categories.remove(pos);
+                adapter.notifyItemRemoved(pos);
+                adapter.notifyItemRangeChanged(pos, categories.size());
+                adapter.notifyDataSetChanged();
+            }
+        } catch (Exception e) {
+            Toast.makeText(App.getContext(), "Error Deleting character", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -123,5 +131,11 @@ public class CreateCategoryActivity extends AppCompatActivity implements Categor
         this.catLabel = catLabel;
 
         catName.setText(catLabel);
+    }
+
+    @Override
+    public void onBackPressed() {
+        this.editing = false;
+        super.onBackPressed();
     }
 }

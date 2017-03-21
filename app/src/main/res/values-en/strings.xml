@@ -99,7 +99,7 @@
 
     <string name="msg_product_created">Product created</string>
     <string name="sort_price_desc">Highest price</string>
-    <string name="bar_title_create_location">Create Product</string>
+    <string name="bar_title_create_location">Create Location</string>
     <string name="cancels">Cancel</string>
     <string name="check_low_stock">Check Product</string>
     <string name="editing_product">Editing Product</string>

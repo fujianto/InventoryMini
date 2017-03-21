@@ -109,6 +109,10 @@ public class PushNotif {
             }
         });
 
+        /*System.out.println("`` Last SYNC "+last_sync);
+        System.out.println("NEXY Sync "+nextSync);
+        System.out.println("Current Time "+current_time);*/
+
         if (current_time > nextSync) {
             lowstockAlert.show();
             SharedPref.saveLong("last_stock_alert_time", current_time);

@@ -220,7 +220,7 @@ public class CreateProductActivity extends AppCompatActivity implements ProductP
 
         ArrayAdapter<String> brandAdapter = new ArrayAdapter<String>
                 (this, android.R.layout.simple_list_item_1, brandContentLbl);
-        productBrand.setText(brandContentLbl.get(0));
+        productBrand.setText("");
         productBrand.setAdapter(brandAdapter);
     }
 
@@ -288,9 +288,14 @@ public class CreateProductActivity extends AppCompatActivity implements ProductP
         Bitmap bitmap = ImagePicker.getImageFromResult(this, requestCode, resultCode, data);
 
         if (bitmap != null) {
-            Bitmap sBitmap = FileUtils.scaleDown(bitmap, 500, false);
-            imagePath = FileUtils.getRealPathFromURI(context, FileUtils.getImageUri(context, sBitmap));
-            productImage.setImageURI(Uri.parse(imagePath));
+            try {
+                Bitmap sBitmap = FileUtils.scaleDown(bitmap, 500, false);
+                imagePath = FileUtils.getRealPathFromURI(context, FileUtils.getImageUri(context, sBitmap));
+                productImage.setImageURI(Uri.parse(imagePath));
+            } catch (Exception e) {
+                Toast.makeText(context, e.getMessage() != null ?
+                        e.getMessage() : "Something wrong with image upload", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

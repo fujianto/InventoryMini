@@ -50,6 +50,16 @@
                     <TextView
                         android:layout_alignParentLeft="true"
                         android:layout_width="wrap_content"
+                        android:textColor="@android:color/holo_green_dark"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="Brand"
+                        android:id="@+id/productBrand"/>
+
+                    <TextView
+                        android:layout_below="@+id/productBrand"
+                        android:layout_alignParentLeft="true"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:text="Price"

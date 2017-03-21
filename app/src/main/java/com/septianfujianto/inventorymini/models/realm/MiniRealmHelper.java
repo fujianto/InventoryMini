@@ -2,7 +2,9 @@ package com.septianfujianto.inventorymini.models.realm;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.widget.Toast;
 
+import com.septianfujianto.inventorymini.App;
 import com.septianfujianto.inventorymini.models.ProductFilter;
 import com.septianfujianto.inventorymini.utils.Utils;
 
@@ -147,24 +149,29 @@ public class MiniRealmHelper {
     public RealmResults<Product> filterProducts(ProductFilter filter) {
         RealmQuery<Product> query = realm.where(Product.class);
 
-        if (filter.getCategory_id() != null) {
-            query = query.equalTo("category_id", filter.getCategory_id());
-        }
+        try {
+            if (filter.getCategory_id() != null) {
+                query = query.equalTo("category_id", filter.getCategory_id());
+            }
 
-        if (filter.getLocation_id() > 0) {
-            query = query.equalTo("location_id", filter.getLocation_id());
-        }
+            if (filter.getLocation_id() > 0) {
+                query = query.equalTo("location_id", filter.getLocation_id());
+            }
 
-        if (filter.getMinPrice() != null && filter.getMaxPrice() != null) {
-            query = query.between("price", filter.getMinPrice(), filter.getMaxPrice());
-        }
+            if (filter.getMinPrice() != null && filter.getMaxPrice() != null) {
+                query = query.between("price", filter.getMinPrice(), filter.getMaxPrice());
+            }
 
-        if (filter.getMinQty() > 0 && filter.getMaxQty() > 0) {
-            query = query.between("product_qty", filter.getMinQty(), filter.getMaxQty());
-        }
+            if (filter.getMinQty() > 0 && filter.getMaxQty() > 0) {
+                query = query.between("product_qty", filter.getMinQty(), filter.getMaxQty());
+            }
 
-        if (filter.getProduct_brand().length() > 0) {
-            query = query.contains("product_brand", filter.getProduct_brand());
+            if (filter.getProduct_brand() != null) {
+                query = query.contains("product_brand", filter.getProduct_brand());
+            }
+        } catch (Exception e) {
+            Toast.makeText(App.getContext(), e.getMessage() != null ? e.getMessage()
+                    : "Something wrong on Filter", Toast.LENGTH_SHORT).show();
         }
 
         return query.findAll();
