@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">Inventory Mini</string>
+    <string name="app_simple_name">inventory_mini</string>
     <string name="title_activity_list_product">Produk Terbaru</string>
+    <string name="app_id">ca-app-pub-2945984116276231~4249365577</string>
+
+
+    <string name="list_product_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="create_product_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="view_product_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
 
     <string name="navigation_drawer_open">Buka navigation drawer</string>
     <string name="navigation_drawer_close">Tutup navigation drawer</string>
@@ -145,9 +152,9 @@
 
     <string name="translate_false_about_html" translatable="false">
         <![CDATA[
-           <h1>Inventory Mini 0.5</h1>
+           <h1>Inventory Mini 1.3</h1>
 
-            <span>&copy; Copyright 2017 <a href="http://septianfujianto.com/">Septian Ahmad Fujianto </a>
+            <span>&copy; Copyright 2018 <a href="http://septianfujianto.com/">Septian Ahmad Fujianto </a>
             <span>Inventory Mini is licensed under the GPL v2 or later <a href="http://www.gnu.org/licenses/gpl-2.0.html">http://www.gnu.org/licenses/gpl-2.0.html</a></span>
 
             <br />

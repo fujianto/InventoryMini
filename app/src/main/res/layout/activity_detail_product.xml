@@ -218,6 +218,21 @@
                     android:layout_height="wrap_content"
                     android:text="Desc"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+                <com.google.android.gms.ads.AdView
+                    android:layout_marginTop="5sp"
+                    android:layout_marginBottom="5sp"
+                    android:layout_gravity="bottom"
+                    android:layout_below="@id/rcv_listProduct"
+                    xmlns:ads="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/adView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    ads:adSize="SMART_BANNER"
+                    ads:adUnitId="@string/view_product_ad_unit_id">
+                </com.google.android.gms.ads.AdView>
             </LinearLayout>
         </FrameLayout>
     </android.support.v4.widget.NestedScrollView>

@@ -49,6 +49,20 @@
 
     <include layout="@layout/content_list_product" />
 
+    <com.google.android.gms.ads.AdView
+        android:layout_marginBottom="56sp"
+        android:layout_gravity="bottom"
+        android:layout_below="@id/rcv_listProduct"
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="SMART_BANNER"
+        ads:adUnitId="@string/list_product_ad_unit_id">
+    </com.google.android.gms.ads.AdView>
+
     <android.support.design.widget.BottomNavigationView
         android:layout_gravity="bottom"
         android:id="@+id/bottom_navigation"

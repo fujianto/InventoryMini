@@ -1,24 +1,16 @@
 package com.septianfujianto.inventorymini.process;
 
-import android.app.Notification;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.annotation.NonNull;
-import android.support.v4.app.NotificationManagerCompat;
 
 import com.evernote.android.job.Job;
 import com.evernote.android.job.JobManager;
 import com.evernote.android.job.JobRequest;
-import com.septianfujianto.inventorymini.App;
 import com.septianfujianto.inventorymini.R;
-import com.septianfujianto.inventorymini.ui.main.MainActivity;
 import com.septianfujianto.inventorymini.ui.status.StatusActivity;
 import com.septianfujianto.inventorymini.utils.SharedPref;
-import com.septianfujianto.inventorymini.utils.Utils;
 
-import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -54,7 +46,7 @@ public class StockReminderJob extends Job {
 
         mLastJobId = new JobRequest.Builder(StockReminderJob.TAG)
                 .setPeriodic(TimeUnit.MINUTES.toMillis(Long.valueOf(sync_frequency)), JobRequest.MIN_FLEX)
-                .setPersisted(true)
+                .setExecutionWindow(30_000L, 40_000L)
                 .build()
                 .schedule();
     }

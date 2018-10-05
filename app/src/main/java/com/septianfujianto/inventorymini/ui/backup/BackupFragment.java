@@ -46,7 +46,7 @@ public class BackupFragment extends Fragment implements ProductPresenter.Product
                 realmBackupRestoreJson.backupProduct();
                 realmBackupRestoreJson.backupCategory();
                 realmBackupRestoreJson.backupLocation();
-
+                realmBackupRestoreJson.backupAll();
                 Toast.makeText(getActivity(), getString(R.string.backup_created), Toast.LENGTH_SHORT).show();
             }
         });

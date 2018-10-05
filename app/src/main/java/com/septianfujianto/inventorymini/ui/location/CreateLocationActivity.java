@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.septianfujianto.inventorymini.R;
 import com.septianfujianto.inventorymini.models.realm.Location;
 import com.septianfujianto.inventorymini.models.realm.MiniRealmHelper;
@@ -21,6 +22,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.fabric.sdk.android.Fabric;
 import io.realm.RealmResults;
 
 
@@ -39,6 +41,8 @@ public class CreateLocationActivity extends AppCompatActivity implements Locatio
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
+
         setContentView(R.layout.activity_create_location);
         ButterKnife.bind(this);
         getSupportActionBar().setTitle(getString(R.string.bar_title_create_location));

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.crashlytics.android.Crashlytics;
 import com.septianfujianto.inventorymini.App;
 import com.septianfujianto.inventorymini.R;
 import com.septianfujianto.inventorymini.models.OverviewItem;
@@ -18,6 +19,8 @@ import com.septianfujianto.inventorymini.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.fabric.sdk.android.Fabric;
 
 public class StatusActivity extends AppCompatActivity {
     private Context context;
@@ -34,6 +37,7 @@ public class StatusActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_status);
+        Fabric.with(this, new Crashlytics());
 
         context = this;
         helper = new MiniRealmHelper(this);

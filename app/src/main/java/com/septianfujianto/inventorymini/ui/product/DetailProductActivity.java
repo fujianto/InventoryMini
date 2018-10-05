@@ -16,6 +16,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.septianfujianto.inventorymini.App;
 import com.septianfujianto.inventorymini.R;
 import com.septianfujianto.inventorymini.models.realm.MiniRealmHelper;
@@ -26,6 +30,7 @@ import com.septianfujianto.inventorymini.utils.Utils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.fabric.sdk.android.Fabric;
 
 import static android.R.id.input;
 
@@ -44,6 +49,7 @@ public class DetailProductActivity extends AppCompatActivity {
     private ImageView featuredImage;
     private Context context;
     private Bundle extras;
+
     @BindView(R.id.fabDelete)
     FloatingActionButton fabDelete;
     @BindView(R.id.fabEdit)
@@ -58,10 +64,16 @@ public class DetailProductActivity extends AppCompatActivity {
     TextView productTextCategory;
     @BindView(R.id.productTextLocation)
     TextView productTextLocation;
+    private AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
+        MobileAds.initialize(this, getString(R.string.view_product_ad_unit_id));
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
         setContentView(R.layout.activity_detail_product);
 
         setSupportActionBar((Toolbar) findViewById(R.id.toolbarDetailProduct));

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.septianfujianto.inventorymini">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".App"
@@ -12,6 +14,12 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/MiniMaterialTheme">
+
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3940256099942544~3347511713"/>
+
         <activity
             android:name=".ui.splash.SplashScreenActivity"
             android:theme="@style/SplashTheme">
@@ -73,6 +81,11 @@
                 <action android:name="com.evernote.android.job.ADD_JOB_CREATOR"/>
             </intent-filter>
         </receiver>
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="e6a3d98b287897627adb92816d50e948594c6398"
+            />
     </application>
 
 </manifest>

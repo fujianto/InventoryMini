@@ -38,7 +38,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.evernote.android.job.JobManager;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.joanzapata.iconify.IconDrawable;
 import com.joanzapata.iconify.fonts.FontAwesomeIcons;
 import com.septianfujianto.inventorymini.App;
@@ -63,6 +67,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.fabric.sdk.android.Fabric;
 import io.realm.RealmResults;
 import io.realm.Sort;
 
@@ -82,6 +87,7 @@ public class ListProductActivity extends AppCompatActivity
     private View dialogView;
     private JobManager mJobManager;
     private TextView drawerMenuTitle;
+    private AdView mAdView;
 
     @BindView(R.id.bottom_navigation) BottomNavigationView bottomNavigationView;
     @BindView(R.id.searcbox) EditText searchbox;
@@ -90,6 +96,9 @@ public class ListProductActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
+        MobileAds.initialize(this, getString(R.string.list_product_ad_unit_id));
+
         setContentView(R.layout.activity_list_product);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(getString(R.string.bar_title_latest_product));
@@ -99,6 +108,9 @@ public class ListProductActivity extends AppCompatActivity
 
         mJobManager = JobManager.instance();
 
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
         context = this;
         helper = new MiniRealmHelper(this);
         productPresenter = new ProductPresenter(this, this);
@@ -111,11 +123,6 @@ public class ListProductActivity extends AppCompatActivity
         setupSearchbox();
         setupProductRecyclerview(savedInstanceState);
         setupBottombar();
-
-       /* System.out.println("================");
-        System.out.println(SharedPref.getBol("notifications_low_stock"));
-        System.out.println(helper.getLowStocksProducts().size());
-        System.out.println(SharedPref.getBol("notifications_low_stock") && helper.getLowStocksProducts().size() > 0);*/
 
         if (savedInstanceState == null) {
             PushNotif notif = new PushNotif(context);
@@ -156,22 +163,22 @@ public class ListProductActivity extends AppCompatActivity
         drawerMenuTitle.setText(titleDrawer);
 
         menu.findItem(R.id.nav_category).setIcon(new IconDrawable(context, FontAwesomeIcons.fa_tag)
-            .colorRes(R.color.icons).actionBarSize());
+            .colorRes(R.color.secondary_text).actionBarSize());
 
         menu.findItem(R.id.nav_location).setIcon(new IconDrawable(context, FontAwesomeIcons.fa_location_arrow)
-                .colorRes(R.color.icons).actionBarSize());
+                .colorRes(R.color.secondary_text).actionBarSize());
 
         menu.findItem(R.id.nav_import).setIcon(new IconDrawable(context, FontAwesomeIcons.fa_download)
-                .colorRes(R.color.icons).actionBarSize());
+                .colorRes(R.color.secondary_text).actionBarSize());
 
         menu.findItem(R.id.nav_about).setIcon(new IconDrawable(context, FontAwesomeIcons.fa_info)
-                .colorRes(R.color.icons).actionBarSize());
+                .colorRes(R.color.secondary_text).actionBarSize());
 
         menu.findItem(R.id.nav_settings).setIcon(new IconDrawable(context, FontAwesomeIcons.fa_cog)
-                .colorRes(R.color.icons).actionBarSize());
+                .colorRes(R.color.secondary_text).actionBarSize());
 
         menu.findItem(R.id.nav_summary).setIcon(new IconDrawable(context, FontAwesomeIcons.fa_line_chart)
-                .colorRes(R.color.icons).actionBarSize());
+                .colorRes(R.color.secondary_text).actionBarSize());
     }
 
     private void setupBottombar() {

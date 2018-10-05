@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -18,8 +19,13 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
+import com.esafirm.imagepicker.features.ImagePicker;
+import com.esafirm.imagepicker.model.Image;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.joanzapata.iconify.widget.IconButton;
-import com.mvc.imagepicker.ImagePicker;
 import com.septianfujianto.inventorymini.R;
 import com.septianfujianto.inventorymini.models.realm.Category;
 import com.septianfujianto.inventorymini.models.realm.Location;
@@ -35,6 +41,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.fabric.sdk.android.Fabric;
 import io.realm.RealmResults;
 
 import static com.septianfujianto.inventorymini.R.array.weight_label;
@@ -93,17 +100,23 @@ public class CreateProductActivity extends AppCompatActivity implements ProductP
     private String[] qtyLabel;
     private String[] weight_lbl;
     private String[] brandContent;
+    private AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
+        MobileAds.initialize(this, getString(R.string.create_product_ad_unit_id));
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
         setContentView(R.layout.activity_create_product);
         ButterKnife.bind(this);
         context = this;
         activity = this;
         getSupportActionBar().setTitle(getString(R.string.bar_title_create_product));
         helper = new MiniRealmHelper(this);
-        ImagePicker.setMinQuality(400, 400);
+//        ImagePicker.setMinQuality(400, 400);
         extras = getIntent().getExtras();
         ButterKnife.bind(this);
         productPresenter = new ProductPresenter(this, this);
@@ -124,7 +137,12 @@ public class CreateProductActivity extends AppCompatActivity implements ProductP
             @Override
             public void onClick(View view) {
                 new FileUtils().checkStoragePermissions(activity);
-                ImagePicker.pickImage((Activity) context, getString(R.string.select_image));
+                ImagePicker.create((Activity) context)
+                        .includeVideo(false)
+                        .single()
+                        .start();
+//                ImagePicker.pickImage((Activity) context, getString(R.string.select_image));
+
             }
         });
 
@@ -285,12 +303,10 @@ public class CreateProductActivity extends AppCompatActivity implements ProductP
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        Bitmap bitmap = ImagePicker.getImageFromResult(this, requestCode, resultCode, data);
-
-        if (bitmap != null) {
+        if (ImagePicker.shouldHandle(requestCode, resultCode, data)) {
             try {
-                Bitmap sBitmap = FileUtils.scaleDown(bitmap, 500, false);
-                imagePath = FileUtils.getRealPathFromURI(context, FileUtils.getImageUri(context, sBitmap));
+                Image image = ImagePicker.getFirstImageOrNull(data);
+                imagePath = image.getPath();
                 productImage.setImageURI(Uri.parse(imagePath));
             } catch (Exception e) {
                 Toast.makeText(context, e.getMessage() != null ?
